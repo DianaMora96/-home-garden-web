@@ -2,74 +2,87 @@
 import { useState } from 'react';
 
 const projects = [
-  { id: 1, label: 'IVY', color: '#0f6e56' },
-  { id: 2, label: 'Colón', color: '#0a3d2e' },
-  { id: 3, label: 'PH Galería', color: '#1a8f6a' },
-  { id: 4, label: 'Balmoral', color: '#0d5c47' },
-  { id: 5, label: 'Corona', color: '#0f6e56' },
-  { id: 6, label: 'TDJD', color: '#0a3d2e' },
+  { id: 1, label: 'IVY', size: 'large', bg: '#c8e6d4' },
+  { id: 2, label: 'Colón', size: 'small', bg: '#b8d9c4' },
+  { id: 3, label: 'PH Galería', size: 'small', bg: '#cce8d8' },
+  { id: 4, label: 'Balmoral', size: 'small', bg: '#d4eadc' },
+  { id: 5, label: 'Corona', size: 'large', bg: '#bfe0cb' },
+  { id: 6, label: 'TDJD', size: 'small', bg: '#c4ddd0' },
 ];
 
 export default function Gallery() {
-  const [active, setActive] = useState<number | null>(null);
+  const [hovered, setHovered] = useState<number | null>(null);
 
   return (
-    <section id="proyectos" className="py-24 px-6" style={{ background: '#f5f7f2' }}>
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <span className="text-sm font-semibold tracking-widest uppercase" style={{ color: '#1db87a' }}>
-            Portafolio
-          </span>
-          <h2 className="text-4xl font-bold mt-3" style={{ color: '#0a3d2e' }}>
-            Nuestros proyectos
-          </h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{ color: '#3d5a4a' }}>
-            Proyectos que han transformado espacios en toda Panamá.
-          </p>
+    <section id="proyectos" className="py-28 px-8 md:px-16 bg-white">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-4">
+          <div>
+            <span className="text-xs font-bold tracking-widest uppercase" style={{ color: '#1db87a' }}>
+              Portafolio
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold mt-3 leading-tight" style={{ color: '#0d1f17', letterSpacing: '-0.02em' }}>
+              Proyectos que<br />hablan por sí solos
+            </h2>
+          </div>
+          <a
+            href="https://wa.me/50769999999"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-3 rounded-full text-sm font-semibold transition-all hover:scale-105 whitespace-nowrap"
+            style={{ background: '#f4faf7', color: '#0f6e56', border: '1px solid #c8e6d4' }}
+          >
+            Ver todos →
+          </a>
         </div>
 
+        {/* Masonry-style grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {projects.map((p) => (
+          {/* Large card */}
+          <div
+            className="col-span-2 md:col-span-1 md:row-span-2 rounded-3xl overflow-hidden relative cursor-pointer transition-all duration-300 hover:shadow-2xl"
+            style={{ minHeight: 400, background: projects[0].bg }}
+            onMouseEnter={() => setHovered(1)}
+            onMouseLeave={() => setHovered(null)}
+          >
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span style={{ fontSize: '8rem', opacity: 0.25 }}>🌳</span>
+            </div>
+            <div
+              className="absolute inset-0 flex items-end p-6 transition-all duration-300"
+              style={{ background: hovered === 1 ? 'rgba(13,31,23,0.4)' : 'rgba(13,31,23,0.1)' }}
+            >
+              <div>
+                <div className="text-xs text-white/70 uppercase tracking-widest mb-1">Proyecto</div>
+                <div className="text-white font-bold text-2xl">{projects[0].label}</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Small cards */}
+          {projects.slice(1).map((p) => (
             <div
               key={p.id}
-              className="group relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
-              style={{ aspectRatio: '4/3', background: `linear-gradient(135deg, ${p.color}, ${p.color}aa)` }}
-              onMouseEnter={() => setActive(p.id)}
-              onMouseLeave={() => setActive(null)}
+              className="rounded-2xl overflow-hidden relative cursor-pointer transition-all duration-300 hover:shadow-xl"
+              style={{ minHeight: 180, background: p.bg }}
+              onMouseEnter={() => setHovered(p.id)}
+              onMouseLeave={() => setHovered(null)}
             >
-              {/* Placeholder with emoji background */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <span style={{ fontSize: '6rem', opacity: 0.12 }}>🌳</span>
+                <span style={{ fontSize: '4rem', opacity: 0.25 }}>🌿</span>
               </div>
-
-              {/* Overlay */}
               <div
-                className="absolute inset-0 flex items-end p-5 transition-all duration-300"
-                style={{ background: active === p.id ? 'rgba(10,61,46,0.6)' : 'rgba(10,61,46,0.2)' }}
+                className="absolute inset-0 flex items-end p-4 transition-all duration-300"
+                style={{ background: hovered === p.id ? 'rgba(13,31,23,0.4)' : 'rgba(13,31,23,0.05)' }}
               >
-                <div>
-                  <div className="text-xs text-white/60 mb-1 uppercase tracking-wider">Proyecto</div>
-                  <div className="text-white font-bold text-lg">{p.label}</div>
-                </div>
-              </div>
-
-              {/* Note for real photos */}
-              <div
-                className="absolute top-3 right-3 px-2 py-1 rounded-lg text-xs font-medium transition-all duration-300"
-                style={{
-                  background: 'rgba(255,255,255,0.15)',
-                  color: 'rgba(255,255,255,0.8)',
-                  opacity: active === p.id ? 1 : 0,
-                }}
-              >
-                📸 Ver fotos
+                <div className="text-white font-semibold text-sm">{p.label}</div>
               </div>
             </div>
           ))}
         </div>
 
-        <p className="text-center text-sm mt-8" style={{ color: '#3d5a4a' }}>
-          ¿Quieres ver más? <a href="https://wa.me/50769999999" className="font-semibold" style={{ color: '#0f6e56' }}>Escríbenos por WhatsApp</a>
+        <p className="text-center text-sm mt-8" style={{ color: '#8aab99' }}>
+          Reemplaza los fondos con tus fotos reales de cada proyecto.
         </p>
       </div>
     </section>
