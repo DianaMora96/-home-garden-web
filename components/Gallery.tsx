@@ -5,16 +5,21 @@ import Image from 'next/image';
 // Para cada proyecto: pega aquí el ID del archivo de Google Drive (la parte
 // entre /d/ y /view en el link para compartir, con acceso "Cualquiera con el
 // enlace puede ver"). Deja driveId: null mientras no tengas la foto.
-// "label" es solo interno (texto alt de la imagen) — en pantalla no se
-// muestra ningún nombre de cliente, todas las tarjetas dicen "Proyectos".
+// "label" se muestra en pantalla, pero nunca pongas un nombre de cliente
+// (IVY, Colón, PH Galería, Balmoral, Corona, TDJD): usa una descripción del
+// servicio, porque no podemos confirmar a qué proyecto pertenece cada foto.
 const projects: { id: number; label: string; size: 'large' | 'small'; bg: string; driveId: string | null }[] = [
-  { id: 1, label: 'IVY', size: 'large', bg: '#c8e6d4', driveId: '1jYJ2l0dDmiFwBiS4tj0F44ZBluQW8uFY' },
+  { id: 1, label: 'Terraza y jardín', size: 'large', bg: '#c8e6d4', driveId: '1jYJ2l0dDmiFwBiS4tj0F44ZBluQW8uFY' },
   { id: 2, label: 'Vivero propio', size: 'small', bg: '#b8d9c4', driveId: '18Ju3VB3k6DtHjYQLHqB0hoUAYWa60xJ5' },
   { id: 3, label: 'Instalaciones', size: 'small', bg: '#cce8d8', driveId: '16CLXK7MYddHxZEZCSLobALbanVloNU9g' },
   { id: 4, label: 'Diseño paisajista', size: 'small', bg: '#d4eadc', driveId: '1axDHI6jOyCvJBoGiFEPnZiyF5wvbAWvD' },
   { id: 5, label: 'Mantenimiento', size: 'small', bg: '#bfe0cb', driveId: '1dGLYmxFvuePTu_AKR5mjJWr6yGRoCYVs' },
   { id: 6, label: 'Entrega e instalación', size: 'small', bg: '#c4ddd0', driveId: '1UbSjjQsTiBJw_2tqxFA8WKoKUXyN-dRw' },
+  { id: 7, label: 'Vivero', size: 'small', bg: '#b3d6c0', driveId: '1GgwTxIaucUiwVpgyFyjL8kWHLNkjQE1X' },
+  { id: 8, label: 'Jardines', size: 'small', bg: '#c1e0cd', driveId: '19PsPFXleDO61FOGOnwdYh7qXRZG2mMDV' },
 ];
+// 1 tarjeta grande (ocupa 1 columna x 2 filas) + 7 pequeñas = 9 celdas,
+// exactamente las 3 columnas x 3 filas del grid en desktop, sin huecos.
 
 function driveImageUrl(driveId: string) {
   return `https://lh3.googleusercontent.com/d/${driveId}=w1000`;
@@ -66,7 +71,10 @@ export default function Gallery() {
               className="absolute inset-0 flex items-end p-6 transition-all duration-300"
               style={{ background: hovered === 1 ? 'rgba(13,31,23,0.4)' : 'rgba(13,31,23,0.1)' }}
             >
-              <div className="text-white font-bold text-2xl uppercase tracking-widest">Proyectos</div>
+              <div>
+                <div className="text-xs text-white/70 uppercase tracking-widest mb-1">Proyecto</div>
+                <div className="text-white font-bold text-2xl">{projects[0].label}</div>
+              </div>
             </div>
           </div>
 
@@ -90,7 +98,7 @@ export default function Gallery() {
                 className="absolute inset-0 flex items-end p-4 transition-all duration-300"
                 style={{ background: hovered === p.id ? 'rgba(13,31,23,0.4)' : 'rgba(13,31,23,0.05)' }}
               >
-                <div className="text-white font-semibold text-sm uppercase tracking-widest">Proyectos</div>
+                <div className="text-white font-semibold text-sm">{p.label}</div>
               </div>
             </div>
           ))}
