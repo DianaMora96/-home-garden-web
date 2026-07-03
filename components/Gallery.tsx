@@ -5,13 +5,10 @@ import Image from 'next/image';
 // Para cada proyecto: pega aquí el ID del archivo de Google Drive (la parte
 // entre /d/ y /view en el link para compartir, con acceso "Cualquiera con el
 // enlace puede ver"). Deja driveId: null mientras no tengas la foto.
-// Nota: "PH Galería" usa una foto confirmada de esa carpeta en Drive. Los
-// demás espacios usan fotos generales del vivero (no de un cliente
-// específico), así que llevan etiqueta genérica en vez de nombre de cliente
-// para no atribuirle mal un proyecto a alguien. Si consigues fotos propias de
-// IVY, Colón, Balmoral, Corona o TDJD, reemplaza el driveId y el label aquí.
+// "label" es solo interno (texto alt de la imagen) — en pantalla no se
+// muestra ningún nombre de cliente, todas las tarjetas dicen "Proyectos".
 const projects: { id: number; label: string; size: 'large' | 'small'; bg: string; driveId: string | null }[] = [
-  { id: 1, label: 'PH Galería', size: 'large', bg: '#c8e6d4', driveId: '1jYJ2l0dDmiFwBiS4tj0F44ZBluQW8uFY' },
+  { id: 1, label: 'IVY', size: 'large', bg: '#c8e6d4', driveId: '1jYJ2l0dDmiFwBiS4tj0F44ZBluQW8uFY' },
   { id: 2, label: 'Vivero propio', size: 'small', bg: '#b8d9c4', driveId: '18Ju3VB3k6DtHjYQLHqB0hoUAYWa60xJ5' },
   { id: 3, label: 'Instalaciones', size: 'small', bg: '#cce8d8', driveId: '16CLXK7MYddHxZEZCSLobALbanVloNU9g' },
   { id: 4, label: 'Diseño paisajista', size: 'small', bg: '#d4eadc', driveId: '1axDHI6jOyCvJBoGiFEPnZiyF5wvbAWvD' },
@@ -69,10 +66,7 @@ export default function Gallery() {
               className="absolute inset-0 flex items-end p-6 transition-all duration-300"
               style={{ background: hovered === 1 ? 'rgba(13,31,23,0.4)' : 'rgba(13,31,23,0.1)' }}
             >
-              <div>
-                <div className="text-xs text-white/70 uppercase tracking-widest mb-1">Proyecto</div>
-                <div className="text-white font-bold text-2xl">{projects[0].label}</div>
-              </div>
+              <div className="text-white font-bold text-2xl uppercase tracking-widest">Proyectos</div>
             </div>
           </div>
 
@@ -96,7 +90,7 @@ export default function Gallery() {
                 className="absolute inset-0 flex items-end p-4 transition-all duration-300"
                 style={{ background: hovered === p.id ? 'rgba(13,31,23,0.4)' : 'rgba(13,31,23,0.05)' }}
               >
-                <div className="text-white font-semibold text-sm">{p.label}</div>
+                <div className="text-white font-semibold text-sm uppercase tracking-widest">Proyectos</div>
               </div>
             </div>
           ))}
