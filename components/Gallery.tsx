@@ -52,11 +52,11 @@ export default function Gallery() {
         </div>
 
         {/* Masonry-style grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {/* Large card */}
           <div
-            className="col-span-2 md:col-span-1 md:row-span-2 rounded-3xl overflow-hidden relative cursor-pointer transition-all duration-300 hover:shadow-2xl"
-            style={{ minHeight: 400, background: projects[0].bg }}
+            className="md:col-span-1 md:row-span-2 rounded-3xl overflow-hidden relative cursor-pointer transition-all duration-300 hover:shadow-2xl min-h-[420px]"
+            style={{ background: projects[0].bg }}
             onMouseEnter={() => setHovered(1)}
             onMouseLeave={() => setHovered(null)}
           >
@@ -82,8 +82,8 @@ export default function Gallery() {
           {projects.slice(1).map((p) => (
             <div
               key={p.id}
-              className="rounded-2xl overflow-hidden relative cursor-pointer transition-all duration-300 hover:shadow-xl"
-              style={{ minHeight: 180, background: p.bg }}
+              className="rounded-2xl overflow-hidden relative cursor-pointer transition-all duration-300 hover:shadow-xl min-h-[340px] md:min-h-[180px]"
+              style={{ background: p.bg }}
               onMouseEnter={() => setHovered(p.id)}
               onMouseLeave={() => setHovered(null)}
             >
