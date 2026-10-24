@@ -42,7 +42,7 @@ export const arboles: Arbol[] = [
     descripcion:
       'Follaje variegado verde y crema, con tronco formado que le da el aspecto de un bonsái de gran tamaño. Una pieza escultural para salas y recibidores.',
     riego: 'Moderado, cuando la superficie de la tierra esté seca',
-    precio: null,
+    precio: 165,
   },
   {
     id: 'alii',
@@ -65,7 +65,7 @@ export const arboles: Arbol[] = [
     descripcion:
       'Silueta vertical de follaje fino y abundante que suaviza cualquier espacio. Aporta textura y verde intenso.',
     riego: 'Frecuente, manteniendo la tierra ligeramente húmeda',
-    precio: null,
+    precio: 185,
   },
   {
     id: 'reina',
@@ -75,7 +75,7 @@ export const arboles: Arbol[] = [
     descripcion:
       'La pieza más alta de la colección. Presencia imponente para techos altos, dobles alturas y áreas sociales.',
     riego: 'Moderado, según la luz del espacio',
-    precio: null,
+    precio: 185,
   },
   {
     id: 'mexicali',
