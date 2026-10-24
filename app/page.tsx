@@ -118,11 +118,11 @@ export default function Tienda() {
             </div>
             <div>
               <h3>Pago con Yappy o ACH</h3>
-              <p>Reserva tu pieza sin comisiones de tarjeta.</p>
+              <p>Paga tu pieza sin comisiones de tarjeta.</p>
             </div>
             <div>
               <h3>Entrega a domicilio</h3>
-              <p>Transporte cuidado e instalación en tu espacio.</p>
+              <p>B/. 15 por árbol, jueves o viernes. Zonas aplican.</p>
             </div>
           </div>
         </section>
@@ -171,7 +171,7 @@ export default function Tienda() {
             <div className="t-seccion-head">
               <span className="t-kicker">La colección</span>
               <h2>Cada árbol es una pieza única.</h2>
-              <p>Cuando una pieza se reserva, sale de la tienda. Recomendamos que el espacio interior cuente con excelente iluminación natural.</p>
+              <p>Cuando una pieza se vende, sale de la tienda. Recomendamos que el espacio interior cuente con excelente iluminación natural.</p>
             </div>
 
             <div className="t-grid">

@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import type { Arbol } from '@/lib/catalogo';
-import { ACH, formatoBalboas, montoReserva, RESERVA_PORCENTAJE, WHATSAPP } from '@/lib/catalogo';
+import { ACH, DIAS_ENTREGA, ENTREGA, formatoBalboas, WHATSAPP } from '@/lib/catalogo';
 
 type BtnYappy = HTMLElement & {
   isButtonLoading?: boolean;
@@ -46,7 +46,7 @@ export default function CompraYappy({ arbol, cdn, activo }: { arbol: Arbol; cdn:
   const [online, setOnline] = useState(true);
 
   const precio = arbol.precio;
-  const reserva = precio != null ? montoReserva(precio) : 0;
+  const total = precio ?? 0;
   const textoWa = encodeURIComponent(
     `Hola Home & Garden, me interesa la pieza ${arbol.nombre} (${arbol.altura} m) de la tienda en línea.`,
   );
@@ -109,21 +109,26 @@ export default function CompraYappy({ arbol, cdn, activo }: { arbol: Arbol; cdn:
   if (estado === 'pagado') {
     return (
       <div className="t-pagado" role="status">
-        <strong>¡Pieza reservada!</strong>
-        <p>Recibimos tu pago. Te escribiremos por WhatsApp para coordinar la entrega.</p>
+        <strong>¡Pieza confirmada!</strong>
+        <p>Recibimos tu pago. Te escribiremos por WhatsApp para coordinar la entrega del jueves o viernes.</p>
       </div>
     );
   }
 
   const puedePagar = activo && precio != null && online;
 
-
   return (
     <div className="t-compra">
       {precio != null && (
-        <div className="t-precio-fila">
-          <span>Precio</span>
-          <b>{formatoBalboas(precio)}</b>
+        <div className="t-precios">
+          <div className="t-precio-fila">
+            <span>Precio</span>
+            <b>{formatoBalboas(precio)}</b>
+          </div>
+          <div className="t-precio-sub">
+            <span>Entrega</span>
+            <span>{formatoBalboas(ENTREGA)} · zonas aplican</span>
+          </div>
         </div>
       )}
 
@@ -144,18 +149,13 @@ export default function CompraYappy({ arbol, cdn, activo }: { arbol: Arbol; cdn:
             />
           </label>
           <btn-yappy ref={btnRef} theme="darkBlue" rounded="true" />
-          <p className="t-nota">
-            {RESERVA_PORCENTAJE < 100
-              ? `Pagas hoy ${formatoBalboas(reserva)} (${RESERVA_PORCENTAJE}%) para reservar la pieza. El resto, al coordinar la entrega.`
-              : 'La entrega se cotiza según tu zona.'}
-          </p>
         </>
       ) : (
-        <p className="t-nota">
-          {precio == null
-            ? 'Precio a consultar. Escríbenos y te enviamos fotos y disponibilidad.'
-            : `Reserva con ${formatoBalboas(reserva)} (${RESERVA_PORCENTAJE}%) por transferencia ACH. El resto, al coordinar la entrega.`}
-        </p>
+        precio == null && <p className="t-nota">Precio a consultar. Escríbenos y te enviamos fotos y disponibilidad.</p>
+      )}
+
+      {precio != null && (
+        <p className="t-nota">El pago del 100% confirma tu planta. La entrega se paga aparte al coordinarla. {DIAS_ENTREGA}</p>
       )}
 
       {precio != null && (
@@ -177,7 +177,7 @@ export default function CompraYappy({ arbol, cdn, activo }: { arbol: Arbol; cdn:
               </div>
               <div>
                 <dt>Monto</dt>
-                <dd>{formatoBalboas(reserva)}</dd>
+                <dd>{formatoBalboas(total)}</dd>
               </div>
               <div>
                 <dt>Descripción</dt>
@@ -185,7 +185,7 @@ export default function CompraYappy({ arbol, cdn, activo }: { arbol: Arbol; cdn:
               </div>
             </dl>
           ) : (
-            <p className="t-nota">Escríbenos por WhatsApp y te enviamos los datos de la cuenta para transferir {formatoBalboas(reserva)}.</p>
+            <p className="t-nota">Escríbenos por WhatsApp y te enviamos los datos de la cuenta para transferir {formatoBalboas(total)}.</p>
           )}
           <a
             className="t-btn-linea"

@@ -1,4 +1,4 @@
-import { arboles, montoReserva } from '@/lib/catalogo';
+import { arboles } from '@/lib/catalogo';
 import { crearOrden, nuevoOrderId, yappyConfigurado } from '@/lib/yappy';
 
 export async function POST(request: Request) {
@@ -20,7 +20,7 @@ export async function POST(request: Request) {
   // El monto sale del catálogo en el servidor, nunca del navegador.
   const orderId = nuevoOrderId();
   try {
-    const orden = await crearOrden({ orderId, telefono: numero, total: montoReserva(arbol.precio) });
+    const orden = await crearOrden({ orderId, telefono: numero, total: arbol.precio });
     console.log(`[yappy] orden ${orderId} creada: ${arbol.nombre}, cel ${numero}`);
     return Response.json({ orderId, ...orden });
   } catch (e) {

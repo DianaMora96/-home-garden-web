@@ -1,6 +1,6 @@
 // Catálogo de árboles de interior. Para publicar un precio, cambia `precio`
 // de null al monto en balboas (ej. 450). Con precio en null la pieza muestra
-// "Consultar" y solo se puede reservar por WhatsApp.
+// "Consultar" y solo se puede pedir por WhatsApp.
 // Cuando una pieza se venda, ponle `vendido: true`: pasa a la sección
 // "Ya encontraron su hogar", sin botón de compra.
 
@@ -15,9 +15,10 @@ export const ACH = {
   titular: '',
 };
 
-// Porcentaje del precio que se cobra para reservar la pieza (Yappy o ACH).
-// Pon 100 para cobrar el precio completo.
-export const RESERVA_PORCENTAJE = 50;
+// Costo de entrega por árbol, en balboas (zonas aplican). No se cobra en
+// línea: se confirma y paga al coordinar la entrega.
+export const ENTREGA = 15;
+export const DIAS_ENTREGA = 'Entregamos únicamente jueves o viernes. Te avisamos antes de la visita.';
 
 export type Arbol = {
   id: string;
@@ -107,9 +108,6 @@ export const arboles: Arbol[] = [
   },
 ];
 
-export function montoReserva(precio: number): number {
-  return Math.round(precio * RESERVA_PORCENTAJE) / 100;
-}
 
 export function formatoBalboas(monto: number): string {
   return `B/. ${monto.toLocaleString('es-PA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
