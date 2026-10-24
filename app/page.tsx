@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { Cormorant_Garamond, Poppins } from 'next/font/google';
 import CompraYappy from '@/components/tienda/CompraYappy';
 import { arboles, formatoBalboas, WHATSAPP } from '@/lib/catalogo';
@@ -81,20 +82,31 @@ export default function Tienda() {
 
       <main>
         <section className="t-hero" id="inicio">
-          <Ondas className="t-ondas" />
-          <div className="t-wrap t-hero-in">
-            <span className="t-pill">
-              <i className="t-dot" />
-              Pieza única
-              <i className="t-dot" />
-            </span>
-            <span className="t-kicker t-kicker-lima">Tienda en línea</span>
-            <h1>Árboles de interior</h1>
-            <hr className="t-raya" />
-            <p>Piezas únicas, seleccionadas una a una en nuestro vivero. Págalas con Yappy y te las llevamos a domicilio.</p>
-            <a className="t-btn-claro" href="#coleccion">
-              Ver la colección
-            </a>
+          <div className="t-hero-texto">
+            <Ondas className="t-ondas" />
+            <div className="t-hero-in">
+              <span className="t-pill">
+                <i className="t-dot" />
+                Pieza única
+                <i className="t-dot" />
+              </span>
+              <span className="t-kicker t-kicker-lima">Tienda en línea</span>
+              <h1>Árboles de interior</h1>
+              <hr className="t-raya" />
+              <p>Piezas únicas, seleccionadas una a una en nuestro vivero. Págalas con Yappy o ACH y te las llevamos a domicilio.</p>
+              <a className="t-btn-claro" href="#coleccion">
+                Ver la colección
+              </a>
+            </div>
+          </div>
+          <div className="t-hero-foto">
+            <Image
+              src="/tienda/portada-ocean-reef.jpg"
+              alt="Árbol de interior en maceta blanca bajo un arco, en una sala frente al mar"
+              fill
+              priority
+              sizes="(max-width: 860px) 100vw, 50vw"
+            />
           </div>
         </section>
 
@@ -105,8 +117,8 @@ export default function Tienda() {
               <p>Ejemplares escogidos por forma, follaje y salud.</p>
             </div>
             <div>
-              <h3>Pago con Yappy</h3>
-              <p>Reserva tu pieza desde el celular en segundos.</p>
+              <h3>Pago con Yappy o ACH</h3>
+              <p>Reserva tu pieza sin comisiones de tarjeta.</p>
             </div>
             <div>
               <h3>Entrega a domicilio</h3>
