@@ -148,6 +148,7 @@
 .t-vendido .t-ph { bottom: 40%; }
 .t-vendido h3 { font-size: 1.45rem; font-style: italic; color: var(--forest); }
 .t-vendido p { font-size: 0.74rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); }
+.t-vendido .t-vendido-precio { font-family: var(--t-display), serif; font-style: italic; font-size: 1.1rem; letter-spacing: 0; text-transform: none; color: var(--ink-soft); }
 .t-sello { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); background: var(--forest); color: #fff; padding: 0.45em 1.2em; font-size: 0.62rem; font-weight: 500; letter-spacing: 0.32em; text-transform: uppercase; white-space: nowrap; }
 .t-sello::before { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--lime); margin-right: 0.8em; vertical-align: middle; }
 .t-vendidos-cta { margin-top: 36px; max-width: 320px; }

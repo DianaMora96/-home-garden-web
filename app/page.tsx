@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { Cormorant_Garamond, Poppins } from 'next/font/google';
 import CompraYappy from '@/components/tienda/CompraYappy';
-import { arboles, WHATSAPP } from '@/lib/catalogo';
+import { arboles, formatoBalboas, WHATSAPP } from '@/lib/catalogo';
 import { CDN, entornoYappy, yappyConfigurado } from '@/lib/yappy';
 import './tienda.css';
 
@@ -150,6 +150,7 @@ export default function Tienda() {
                     </div>
                     <h3>{a.nombre}</h3>
                     <p>{a.altura} m · {a.etiqueta}</p>
+                    {a.precio != null && <p className="t-vendido-precio">Vendido en {formatoBalboas(a.precio)}</p>}
                   </article>
                 ))}
               </div>
