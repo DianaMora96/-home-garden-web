@@ -4,7 +4,7 @@
 // Cuando una pieza se venda, ponle `vendido: true`: pasa a la sección
 // "Ya encontraron su hogar", sin botón de compra.
 
-export const WHATSAPP = '50769999999';
+export const WHATSAPP = '50764943951';
 
 // Datos para pago por transferencia ACH. Mientras `cuenta` esté vacía, la
 // tienda pide al cliente escribir por WhatsApp para recibir los datos.

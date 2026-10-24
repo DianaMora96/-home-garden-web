@@ -41,7 +41,7 @@ export default function Gallery() {
             </h2>
           </div>
           <a
-            href="https://wa.me/50769999999"
+            href="https://wa.me/50764943951"
             target="_blank"
             rel="noopener noreferrer"
             className="px-6 py-3 rounded-full text-sm font-semibold transition-all hover:scale-105 whitespace-nowrap"
