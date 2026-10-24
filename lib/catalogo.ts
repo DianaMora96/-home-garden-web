@@ -46,6 +46,8 @@ export const arboles: Arbol[] = [
   },
   {
     id: 'alii',
+    vendido: true,
+    foto: '/tienda/ficus-alii.jpg',
     nombre: 'Ficus Alii',
     latin: 'Ficus maclellandii',
     altura: '2.30',
