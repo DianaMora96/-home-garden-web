@@ -47,9 +47,7 @@ export default function CompraYappy({ arbol, cdn, activo }: { arbol: Arbol; cdn:
 
   const precio = arbol.precio;
   const total = precio ?? 0;
-  const textoWa = encodeURIComponent(
-    `Hola Home & Garden, me interesa la pieza ${arbol.nombre} (${arbol.altura} m) de la tienda en línea.`,
-  );
+  const textoWa = encodeURIComponent(`Hola Home & Garden, me interesa la pieza ${arbol.nombre} (${arbol.altura} m) de la tienda en línea.`);
 
   useEffect(() => {
     if (!activo || precio == null) return;
@@ -74,7 +72,11 @@ export default function CompraYappy({ arbol, cdn, activo }: { arbol: Arbol; cdn:
         });
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || 'No se pudo iniciar el pago.');
-        btn.eventPayment?.({ transactionId: data.transactionId, token: data.token, documentName: data.documentName });
+        btn.eventPayment?.({
+          transactionId: data.transactionId,
+          token: data.token,
+          documentName: data.documentName,
+        });
         setEstado('listo');
         setMensaje('Te enviamos la solicitud de pago. Ábrela en tu app de Yappy para confirmar.');
       } catch (e) {
@@ -156,6 +158,22 @@ export default function CompraYappy({ arbol, cdn, activo }: { arbol: Arbol; cdn:
 
       {precio != null && (
         <p className="t-nota">El pago del 100% confirma tu planta. La entrega se paga aparte al coordinarla. {DIAS_ENTREGA}</p>
+      )}
+
+      {precio != null && (
+        <>
+          <a
+            className="t-btn-tarjeta"
+            href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
+              `Hola Home & Garden, quiero pagar con tarjeta la pieza ${arbol.nombre} (${arbol.altura} m). ¿Me envían el enlace de pago?`,
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Pagar con tarjeta <small>Visa · Mastercard</small>
+          </a>
+          <p className="t-nota">Con tarjeta, pídenos el enlace de pago por WhatsApp y te lo enviamos.</p>
+        </>
       )}
 
       {precio != null && (

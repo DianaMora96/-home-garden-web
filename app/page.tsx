@@ -17,7 +17,7 @@ const body = Poppins({ subsets: ['latin'], weight: ['300', '400', '500', '600'],
 export const metadata: Metadata = {
   title: 'Home & Garden | Tienda de árboles de interior',
   description:
-    'Árboles de interior, piezas únicas seleccionadas en nuestro vivero. Compra en línea con Yappy y recibe tu árbol a domicilio en Panamá.',
+    'Árboles de interior, piezas únicas seleccionadas en nuestro vivero. Compra en línea con Yappy, ACH o tarjeta y recibe tu árbol a domicilio en Panamá.',
 };
 
 export const dynamic = 'force-dynamic';
@@ -93,7 +93,7 @@ export default function Tienda() {
               <span className="t-kicker t-kicker-lima">Tienda en línea</span>
               <h1>Árboles de interior</h1>
               <hr className="t-raya" />
-              <p>Piezas únicas, seleccionadas una a una en nuestro vivero. Págalas con Yappy o ACH y te las llevamos a domicilio.</p>
+              <p>Piezas únicas, seleccionadas una a una en nuestro vivero. Págalas con Yappy, ACH o tarjeta y te las llevamos a domicilio.</p>
               <a className="t-btn-claro" href="#coleccion">
                 Ver la colección
               </a>
@@ -117,8 +117,8 @@ export default function Tienda() {
               <p>Ejemplares escogidos por forma, follaje y salud.</p>
             </div>
             <div>
-              <h3>Pago con Yappy o ACH</h3>
-              <p>Paga tu pieza sin comisiones de tarjeta.</p>
+              <h3>Yappy, ACH o tarjeta</h3>
+              <p>Paga tu pieza como prefieras, Visa o Mastercard incluidas.</p>
             </div>
             <div>
               <h3>Entrega a domicilio</h3>
@@ -268,7 +268,7 @@ export default function Tienda() {
       <footer className="t-pie">
         <div className="t-wrap t-pie-in">
           <img src="/brand/HG-logo-horizontal-blanco.svg" alt="Home & Garden, vivero y paisajismo" />
-          <p>© {new Date().getFullYear()} Home & Garden Panamá · Pagos seguros con Yappy</p>
+          <p>© {new Date().getFullYear()} Home & Garden Panamá · Pagos seguros con Yappy, ACH y tarjeta</p>
         </div>
       </footer>
     </div>

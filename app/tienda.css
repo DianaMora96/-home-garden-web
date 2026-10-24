@@ -126,6 +126,10 @@
 .t-nota { font-size: 0.8rem; color: var(--ink-soft); }
 .t-msg { font-size: 0.84rem; padding: 10px 14px; background: var(--paper-2); color: var(--forest); }
 .t-msg-error { background: #f6e3df; color: #8a2b1e; }
+.t-btn-tarjeta { display: flex; justify-content: center; align-items: baseline; gap: 0.8em; padding: 0.9em 1.2em; background: var(--forest); color: #fff; text-decoration: none; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.24em; text-transform: uppercase; transition: background 0.2s; }
+.t-btn-tarjeta small { font-size: 0.6rem; letter-spacing: 0.16em; color: var(--sage); font-weight: 400; }
+.t-btn-tarjeta:hover { background: var(--leaf); }
+.t-btn-tarjeta:hover small { color: #fff; }
 .t-btn-linea { display: flex; justify-content: center; padding: 0.9em 1.2em; border: 1px solid var(--forest); color: var(--forest); text-decoration: none; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.24em; text-transform: uppercase; transition: background 0.2s, color 0.2s; }
 .t-btn-linea:hover, .t-btn-linea:focus-visible { background: var(--leaf); border-color: var(--leaf); color: #fff; outline: none; }
 .t-ach { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
