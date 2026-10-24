@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { Cormorant_Garamond, Poppins } from 'next/font/google';
 import CompraYappy from '@/components/tienda/CompraYappy';
-import { arboles, formatoBalboas, WHATSAPP } from '@/lib/catalogo';
+import { arboles, WHATSAPP } from '@/lib/catalogo';
 import { CDN, entornoYappy, yappyConfigurado } from '@/lib/yappy';
 import './tienda.css';
 
@@ -127,71 +127,6 @@ export default function Tienda() {
           </div>
         </section>
 
-        <section className="t-coleccion" id="coleccion">
-          <div className="t-wrap">
-            <div className="t-seccion-head">
-              <span className="t-kicker">La colección</span>
-              <h2>Cada árbol es una pieza única.</h2>
-              <p>Cuando una pieza se reserva, sale de la tienda. Recomendamos que el espacio interior cuente con excelente iluminación natural.</p>
-            </div>
-
-            <nav className="t-indice" aria-label="Piezas">
-              {disponibles.map((a) => (
-                <a key={a.id} href={`#${a.id}`}>
-                  <span>{a.nombre}</span>
-                  <small>{a.precio != null ? formatoBalboas(a.precio) : `${a.altura} m`}</small>
-                </a>
-              ))}
-            </nav>
-
-            <div className="t-productos">
-              {disponibles.map((a, i) => (
-                <article key={a.id} id={a.id} className={i % 2 ? 't-producto t-alt' : 't-producto'}>
-                  <div className="t-marco">
-                    {a.foto ? (
-                      <img className="t-foto" src={a.foto} alt={a.nombre} />
-                    ) : (
-                      <div className="t-ph">
-                        <img src="/brand/HG-icono-color.svg" alt="" />
-                        <span>Fotografía de la pieza</span>
-                      </div>
-                    )}
-                    <div className="t-altura">
-                      <b>{a.altura} m</b>
-                      <small>Altura aprox.</small>
-                    </div>
-                  </div>
-                  <div className="t-info">
-                    <div className="t-info-top">
-                      <span className="t-kicker">{String(i + 1).padStart(2, '0')} · Pieza única</span>
-                      <span className="t-etiqueta">{a.etiqueta}</span>
-                    </div>
-                    <h2>{a.nombre}</h2>
-                    {a.latin && <p className="t-latin">{a.latin}</p>}
-                    <hr className="t-raya" />
-                    <p className="t-desc">{a.descripcion}</p>
-                    <dl className="t-specs">
-                      <div>
-                        <dt>Altura</dt>
-                        <dd>{a.altura} m aprox., con maceta de vivero</dd>
-                      </div>
-                      <div>
-                        <dt>Luz</dt>
-                        <dd>Muy luminosa, luz natural abundante</dd>
-                      </div>
-                      <div>
-                        <dt>Riego</dt>
-                        <dd>{a.riego}</dd>
-                      </div>
-                    </dl>
-                    <CompraYappy arbol={a} cdn={cdn} activo={activo} />
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {vendidos.length > 0 && (
           <section className="t-vendidos" id="vendidos">
             <div className="t-wrap">
@@ -229,6 +164,60 @@ export default function Tienda() {
             </div>
           </section>
         )}
+
+        <section className="t-coleccion" id="coleccion">
+          <div className="t-wrap">
+            <div className="t-seccion-head">
+              <span className="t-kicker">La colección</span>
+              <h2>Cada árbol es una pieza única.</h2>
+              <p>Cuando una pieza se reserva, sale de la tienda. Recomendamos que el espacio interior cuente con excelente iluminación natural.</p>
+            </div>
+
+            <div className="t-grid">
+              {disponibles.map((a, i) => (
+                <article key={a.id} id={a.id} className="t-card">
+                  <div className="t-marco">
+                    {a.foto ? (
+                      <img className="t-foto" src={a.foto} alt={a.nombre} />
+                    ) : (
+                      <div className="t-ph">
+                        <img src="/brand/HG-icono-color.svg" alt="" />
+                        <span>Fotografía de la pieza</span>
+                      </div>
+                    )}
+                    <div className="t-altura">
+                      <b>{a.altura} m</b>
+                      <small>Altura aprox.</small>
+                    </div>
+                  </div>
+                  <div className="t-card-info">
+                    <div className="t-info-top">
+                      <span className="t-kicker">{String(i + 1).padStart(2, '0')} · Pieza única</span>
+                      <span className="t-etiqueta">{a.etiqueta}</span>
+                    </div>
+                    <h3>{a.nombre}</h3>
+                    {a.latin && <p className="t-latin">{a.latin}</p>}
+                    <p className="t-desc">{a.descripcion}</p>
+                    <details className="t-detalles">
+                      <summary>Luz y riego</summary>
+                      <dl className="t-specs">
+                        <div>
+                          <dt>Luz</dt>
+                          <dd>Muy luminosa, luz natural abundante</dd>
+                        </div>
+                        <div>
+                          <dt>Riego</dt>
+                          <dd>{a.riego}</dd>
+                        </div>
+                      </dl>
+                    </details>
+                    <CompraYappy arbol={a} cdn={cdn} activo={activo} />
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
 
         <section className="t-cuidados" id="cuidados">
           <div className="t-wrap">
