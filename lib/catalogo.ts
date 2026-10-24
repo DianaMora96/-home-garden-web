@@ -77,6 +77,8 @@ export const arboles: Arbol[] = [
   },
   {
     id: 'mexicali',
+    vendido: true,
+    foto: '/tienda/ficus-mexicali.jpg',
     nombre: 'Ficus Mexicali',
     altura: '2.00',
     etiqueta: 'Copa densa',
@@ -87,6 +89,8 @@ export const arboles: Arbol[] = [
   },
   {
     id: 'pittosporum',
+    vendido: true,
+    foto: '/tienda/pittosporum-tobira.jpg',
     nombre: 'Pittosporum tobira',
     latin: 'Pittosporum tobira',
     altura: '1.70',
