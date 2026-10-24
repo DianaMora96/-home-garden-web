@@ -8,7 +8,7 @@ export async function POST(request: Request) {
 
   const { arbolId, telefono } = (await request.json().catch(() => ({}))) as { arbolId?: string; telefono?: string };
   const arbol = arboles.find((a) => a.id === arbolId);
-  if (!arbol || arbol.precio == null) {
+  if (!arbol || arbol.precio == null || arbol.vendido) {
     return Response.json({ error: 'Esta pieza no está disponible para pago en línea.' }, { status: 400 });
   }
 

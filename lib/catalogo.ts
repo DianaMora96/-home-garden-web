@@ -1,12 +1,21 @@
 // Catálogo de árboles de interior. Para publicar un precio, cambia `precio`
 // de null al monto en balboas (ej. 450). Con precio en null la pieza muestra
 // "Consultar" y solo se puede reservar por WhatsApp.
-// Si la pieza tiene `enlaceCuanto` (el link del producto en cuanto.app), el
-// botón "Comprar" lleva ahí y Cuanto cobra con Yappy o tarjeta.
+// Cuando una pieza se venda, ponle `vendido: true`: pasa a la sección
+// "Ya encontraron su hogar", sin botón de compra.
 
 export const WHATSAPP = '50769999999';
 
-// Porcentaje del precio que se cobra con Yappy para reservar la pieza.
+// Datos para pago por transferencia ACH. Mientras `cuenta` esté vacía, la
+// tienda pide al cliente escribir por WhatsApp para recibir los datos.
+export const ACH = {
+  banco: '',
+  tipo: 'Cuenta corriente',
+  cuenta: '',
+  titular: '',
+};
+
+// Porcentaje del precio que se cobra para reservar la pieza (Yappy o ACH).
 // Pon 100 para cobrar el precio completo.
 export const RESERVA_PORCENTAJE = 50;
 
@@ -19,7 +28,7 @@ export type Arbol = {
   descripcion: string;
   riego: string;
   precio: number | null;
-  enlaceCuanto?: string;
+  vendido?: boolean;
   foto?: string;
 };
 

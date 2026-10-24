@@ -56,6 +56,8 @@ function Ondas({ className }: { className: string }) {
 }
 
 export default function Tienda() {
+  const disponibles = arboles.filter((a) => !a.vendido);
+  const vendidos = arboles.filter((a) => a.vendido);
   const activo = yappyConfigurado();
   const cdn = CDN[entornoYappy()];
 
@@ -122,7 +124,7 @@ export default function Tienda() {
             </div>
 
             <nav className="t-indice" aria-label="Piezas">
-              {arboles.map((a) => (
+              {disponibles.map((a) => (
                 <a key={a.id} href={`#${a.id}`}>
                   <span>{a.nombre}</span>
                   <small>{a.precio != null ? formatoBalboas(a.precio) : `${a.altura} m`}</small>
@@ -131,7 +133,7 @@ export default function Tienda() {
             </nav>
 
             <div className="t-productos">
-              {arboles.map((a, i) => (
+              {disponibles.map((a, i) => (
                 <article key={a.id} id={a.id} className={i % 2 ? 't-producto t-alt' : 't-producto'}>
                   <div className="t-marco">
                     {a.foto ? (
@@ -177,6 +179,44 @@ export default function Tienda() {
             </div>
           </div>
         </section>
+
+        {vendidos.length > 0 && (
+          <section className="t-vendidos" id="vendidos">
+            <div className="t-wrap">
+              <div className="t-seccion-head">
+                <span className="t-kicker">Vendidos</span>
+                <h2>Ya encontraron su hogar.</h2>
+                <p>Cada pieza es única y no se repite. Si te gustó alguna de estas, escríbenos y buscamos una similar en el vivero.</p>
+              </div>
+              <div className="t-vendidos-grid">
+                {vendidos.map((a) => (
+                  <article key={a.id} className="t-vendido">
+                    <div className="t-marco">
+                      {a.foto ? (
+                        <img className="t-foto" src={a.foto} alt={a.nombre} />
+                      ) : (
+                        <div className="t-ph">
+                          <img src="/brand/HG-icono-color.svg" alt="" />
+                        </div>
+                      )}
+                      <span className="t-sello">Vendido</span>
+                    </div>
+                    <h3>{a.nombre}</h3>
+                    <p>{a.altura} m · {a.etiqueta}</p>
+                  </article>
+                ))}
+              </div>
+              <a
+                className="t-btn-linea t-vendidos-cta"
+                href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Hola Home & Garden, me gustaría un árbol similar a uno de los vendidos en la tienda.')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Quiero uno similar
+              </a>
+            </div>
+          </section>
+        )}
 
         <section className="t-cuidados" id="cuidados">
           <div className="t-wrap">

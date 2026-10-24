@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import type { Arbol } from '@/lib/catalogo';
-import { formatoBalboas, montoReserva, RESERVA_PORCENTAJE, WHATSAPP } from '@/lib/catalogo';
+import { ACH, formatoBalboas, montoReserva, RESERVA_PORCENTAJE, WHATSAPP } from '@/lib/catalogo';
 
 type BtnYappy = HTMLElement & {
   isButtonLoading?: boolean;
@@ -117,25 +117,6 @@ export default function CompraYappy({ arbol, cdn, activo }: { arbol: Arbol; cdn:
 
   const puedePagar = activo && precio != null && online;
 
-  if (arbol.enlaceCuanto) {
-    return (
-      <div className="t-compra">
-        {precio != null && (
-          <div className="t-precio-fila">
-            <span>Precio</span>
-            <b>{formatoBalboas(precio)}</b>
-          </div>
-        )}
-        <a className="t-btn-lleno" href={arbol.enlaceCuanto} target="_blank" rel="noopener noreferrer">
-          Comprar
-        </a>
-        <p className="t-nota">Pago seguro con Yappy o tarjeta. La entrega se coordina por WhatsApp.</p>
-        <a className="t-btn-linea" href={`https://wa.me/${WHATSAPP}?text=${textoWa}`} target="_blank" rel="noopener noreferrer">
-          Preguntar por WhatsApp
-        </a>
-      </div>
-    );
-  }
 
   return (
     <div className="t-compra">
@@ -173,8 +154,50 @@ export default function CompraYappy({ arbol, cdn, activo }: { arbol: Arbol; cdn:
         <p className="t-nota">
           {precio == null
             ? 'Precio a consultar. Escríbenos y te enviamos fotos y disponibilidad.'
-            : 'El pago en línea no está disponible en este momento. Reserva por WhatsApp.'}
+            : `Reserva con ${formatoBalboas(reserva)} (${RESERVA_PORCENTAJE}%) por transferencia ACH. El resto, al coordinar la entrega.`}
         </p>
+      )}
+
+      {precio != null && (
+        <details className="t-ach">
+          <summary>Pagar por transferencia ACH</summary>
+          {ACH.cuenta ? (
+            <dl>
+              <div>
+                <dt>Banco</dt>
+                <dd>{ACH.banco}</dd>
+              </div>
+              <div>
+                <dt>{ACH.tipo}</dt>
+                <dd>{ACH.cuenta}</dd>
+              </div>
+              <div>
+                <dt>A nombre de</dt>
+                <dd>{ACH.titular}</dd>
+              </div>
+              <div>
+                <dt>Monto</dt>
+                <dd>{formatoBalboas(reserva)}</dd>
+              </div>
+              <div>
+                <dt>Descripción</dt>
+                <dd>{arbol.nombre}</dd>
+              </div>
+            </dl>
+          ) : (
+            <p className="t-nota">Escríbenos por WhatsApp y te enviamos los datos de la cuenta para transferir {formatoBalboas(reserva)}.</p>
+          )}
+          <a
+            className="t-btn-linea"
+            href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
+              `Hola Home & Garden, quiero pagar por ACH la pieza ${arbol.nombre} (${arbol.altura} m).${ACH.cuenta ? ' Adjunto el comprobante.' : ' ¿Me envían los datos de la cuenta?'}`,
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {ACH.cuenta ? 'Enviar comprobante por WhatsApp' : 'Pedir datos por WhatsApp'}
+          </a>
+        </details>
       )}
 
       {mensaje && (
