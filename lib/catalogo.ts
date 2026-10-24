@@ -35,6 +35,7 @@ export type Arbol = {
 export const arboles: Arbol[] = [
   {
     id: 'benjamina',
+    foto: '/tienda/ficus-benjamina-variegado.jpg',
     nombre: 'Ficus benjamina variegado',
     latin: 'Ficus benjamina',
     altura: '1.70',
@@ -59,6 +60,7 @@ export const arboles: Arbol[] = [
   },
   {
     id: 'helecho',
+    foto: '/tienda/helecho-japones.jpg',
     nombre: 'Helecho japonés',
     altura: '2.00',
     etiqueta: 'Follaje fino',
@@ -69,6 +71,7 @@ export const arboles: Arbol[] = [
   },
   {
     id: 'reina',
+    foto: '/tienda/reina-isabel.jpg',
     nombre: 'Reina Isabel',
     altura: '2.50',
     etiqueta: 'Gran formato',
