@@ -205,6 +205,8 @@
 .t-pie { background: #0f2216; color: var(--sage); }
 .t-pie-in { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding-top: 28px; padding-bottom: 28px; font-size: 0.74rem; }
 .t-pie img { height: 34px; width: auto; }
+.t-pie-equipo { color: inherit; opacity: 0.7; text-decoration: none; }
+.t-pie-equipo:hover { opacity: 1; text-decoration: underline; }
 
 @media (max-width: 860px) {
   .t-hero { grid-template-columns: 1fr; min-height: 0; }

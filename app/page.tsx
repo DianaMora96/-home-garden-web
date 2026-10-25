@@ -331,7 +331,11 @@ export default function Tienda() {
       <footer className="t-pie">
         <div className="t-wrap t-pie-in">
           <img src="/brand/HG-logo-horizontal-blanco.svg" alt="Home & Garden, vivero y paisajismo" />
-          <p>© {new Date().getFullYear()} Home & Garden Panamá · Pagos seguros con Yappy, ACH y tarjeta</p>
+          <p>© {new Date().getFullYear()} Home & Garden Panamá · Pagos seguros con Yappy, ACH y tarjeta ·{' '}
+            <a className="t-pie-equipo" href="https://homeandgarden-crm.vercel.app">
+              Acceso equipo
+            </a>
+          </p>
         </div>
       </footer>
     </div>
