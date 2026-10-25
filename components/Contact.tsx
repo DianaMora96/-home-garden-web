@@ -14,7 +14,7 @@ export default function Contact() {
             <p className="text-white/70">Escríbenos y te asesoramos sin compromiso.</p>
           </div>
           <a
-            href="https://wa.me/50769999999"
+            href="https://wa.me/50764943951"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-3 px-8 py-4 rounded-full font-bold text-base transition-all hover:scale-105 whitespace-nowrap"

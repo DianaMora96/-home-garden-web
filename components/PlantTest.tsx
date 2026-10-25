@@ -140,7 +140,7 @@ export default function PlantTest() {
               </div>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <a
-                  href="https://wa.me/50769999999"
+                  href="https://wa.me/50764943951"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-7 py-3.5 rounded-full font-semibold text-white transition-all hover:scale-105"

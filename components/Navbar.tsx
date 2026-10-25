@@ -48,7 +48,7 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="https://wa.me/50769999999"
+            href="https://wa.me/50764943951"
             target="_blank"
             rel="noopener noreferrer"
             className="px-5 py-2 rounded-full text-sm font-semibold text-white transition-all hover:scale-105"
