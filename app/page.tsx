@@ -239,7 +239,7 @@ export default function Tienda() {
           <a className="t-mas-in" href="https://cuanto.app/homeandgarden" target="_blank" rel="noopener noreferrer">
             <span className="t-kicker">Tienda en línea</span>
             <h2>Compra más plantas aquí</h2>
-            <p>Palmas, plantas de interior y más de nuestro vivero, listas para comprar.</p>
+            <p>Palmas, plantas de interior y más de nuestro vivero, listas para enviar a tu hogar.</p>
             <span className="t-btn-claro">Ir a la tienda</span>
           </a>
         </section>
