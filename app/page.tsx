@@ -85,7 +85,6 @@ export default function Tienda() {
             <a href="#potes">Potes</a>
             <a href="#proyectos">Proyectos</a>
             <a href="#cuidados">Cuidados</a>
-            <a href="/empresa">Empresa</a>
             <a className="t-barra-wa" href={`https://wa.me/${WHATSAPP}`} target="_blank" rel="noopener noreferrer">
               WhatsApp
             </a>
