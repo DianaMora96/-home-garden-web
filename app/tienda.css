@@ -161,6 +161,24 @@
 .t-sello::before { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--lime); margin-right: 0.8em; vertical-align: middle; }
 .t-vendidos-cta { margin-top: 36px; max-width: 320px; }
 
+/* Potes */
+.t-potes { padding-top: 104px; }
+.t-potes-in { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 64px; align-items: center; }
+.t-potes-video { aspect-ratio: 3 / 4; border-radius: 999px 999px 0 0; overflow: hidden; background: var(--paper-2); }
+.t-potes-video video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.t-potes-texto { display: flex; flex-direction: column; align-items: flex-start; gap: 22px; }
+.t-potes-texto h2 { font-size: clamp(2.4rem, 5vw, 3.6rem); font-style: italic; color: var(--forest); }
+.t-potes-texto p { max-width: 40ch; color: var(--ink-soft); }
+.t-potes-texto .t-btn-linea { min-width: 240px; }
+.t-potes-galeria { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 56px; }
+.t-potes-galeria img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block; }
+.t-potes-galeria img:last-child { object-position: 72% center; }
+
+/* Proyectos */
+.t-proyectos { padding-top: 104px; }
+.t-proyectos-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 40px; }
+.t-proyectos-grid img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block; }
+
 /* Cuidados */
 .t-cuidados { padding-top: 96px; padding-bottom: 104px; }
 .t-cuidados-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 40px; border-top: 1px solid var(--rule); }
@@ -195,6 +213,9 @@
   .t-cuidados-grid { grid-template-columns: 1fr 1fr; }
   .t-cuidados-grid > div:nth-child(3) { padding-left: 0; border-left: 0; }
   .t-cuidados-grid > div { padding-bottom: 24px; }
+  .t-potes-in { grid-template-columns: 1fr; gap: 40px; }
+  .t-proyectos-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .t-potes-video { max-width: 420px; width: 100%; margin: 0 auto; }
 }
 @media (max-width: 560px) {
   .t-hero-in { padding-top: 56px; padding-bottom: 120px; }
@@ -203,7 +224,10 @@
   .t-servicios > div + div { border-top-color: rgba(255, 255, 255, 0.2); padding-bottom: 14px; }
   .t-pilares-in > div { padding: 18px 0; }
   .t-grid { grid-template-columns: 1fr; }
-  .t-coleccion, .t-cuidados { padding-top: 64px; }
+  .t-coleccion, .t-cuidados, .t-potes, .t-proyectos { padding-top: 64px; }
+  .t-proyectos-grid { gap: 10px; }
+  .t-potes-galeria { grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 40px; }
+  .t-potes-galeria img:last-child { grid-column: 1 / -1; aspect-ratio: 4 / 3; }
 }
 @media (prefers-reduced-motion: reduce) {
   .t-btn-claro, .t-btn-linea { transition: none; }

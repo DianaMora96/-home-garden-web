@@ -45,6 +45,17 @@ const cuidados = [
   },
 ];
 
+const proyectos = [
+  { foto: 1, alt: 'Árbol de interior en pote blanco texturizado junto a una ventana' },
+  { foto: 4, alt: 'Lobby con sofás curvos, potes de lujo y jardín tropical al fondo' },
+  { foto: 6, alt: 'Árbol en pote de lujo gris junto a una piscina en la terraza' },
+  { foto: 3, alt: 'Composición de árboles en potes color arena en un lobby' },
+  { foto: 7, alt: 'Clusia en pote texturizado sobre base metálica en un balcón' },
+  { foto: 8, alt: 'Yuca de varios troncos en pote cilíndrico blanco' },
+  { foto: 2, alt: 'Grupo de plantas en potes junto a una columna en una terraza' },
+  { foto: 5, alt: 'Palma abanico, clusia y anturio en potes claros' },
+];
+
 function Ondas({ className }: { className: string }) {
   return (
     <svg className={className} viewBox="0 0 800 400" preserveAspectRatio="none" aria-hidden="true">
@@ -71,6 +82,8 @@ export default function Tienda() {
           </a>
           <nav className="t-barra-nav" aria-label="Secciones">
             <a href="#coleccion">Colección</a>
+            <a href="#potes">Potes</a>
+            <a href="#proyectos">Proyectos</a>
             <a href="#cuidados">Cuidados</a>
             <a href="/empresa">Empresa</a>
             <a className="t-barra-wa" href={`https://wa.me/${WHATSAPP}`} target="_blank" rel="noopener noreferrer">
@@ -215,6 +228,50 @@ export default function Tienda() {
                     <CompraYappy arbol={a} cdn={cdn} activo={activo} />
                   </div>
                 </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="t-potes" id="potes">
+          <div className="t-wrap">
+            <div className="t-potes-in">
+              <div className="t-potes-video">
+                <video src="/potes/pote-girando.mp4" poster="/potes/pote-girando.jpg" autoPlay muted loop playsInline aria-label="Pote de lujo blanco hueso girando" />
+              </div>
+              <div className="t-potes-texto">
+                <span className="t-kicker">Potes de lujo</span>
+                <h2>Hechos a mano, con textura de piedra.</h2>
+                <hr className="t-raya" />
+                <p>Potes de acabado mineral en blanco hueso, arena, gris, grafito y tierra. Cada uno con su propia textura, a la medida del árbol y del espacio.</p>
+                <a
+                  className="t-btn-linea"
+                  href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Hola Home & Garden, me gustaría cotizar un pote de lujo.')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Cotizar un pote
+                </a>
+              </div>
+            </div>
+            <div className="t-potes-galeria">
+              <img src="/potes/potes-coleccion.jpg" alt="Colección de potes de lujo en distintos tonos y formas" />
+              <img src="/potes/potes-textura.jpg" alt="Detalle de la textura de piedra de los potes" />
+              <img src="/potes/potes-pared.jpg" alt="Cuatro potes de lujo frente a una pared de concreto" />
+            </div>
+          </div>
+        </section>
+
+        <section className="t-proyectos" id="proyectos">
+          <div className="t-wrap">
+            <div className="t-seccion-head">
+              <span className="t-kicker">Proyectos</span>
+              <h2>Espacios que ya llenamos de verde.</h2>
+              <p>Lobbies, terrazas y hogares en Panamá, diseñados con nuestros árboles y potes de lujo.</p>
+            </div>
+            <div className="t-proyectos-grid">
+              {proyectos.map((p) => (
+                <img key={p.foto} src={`/proyectos/proyecto-${p.foto}.jpg`} alt={p.alt} loading="lazy" />
               ))}
             </div>
           </div>
