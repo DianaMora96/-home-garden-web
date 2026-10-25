@@ -237,7 +237,7 @@ export default function Tienda() {
           <div className="t-wrap">
             <div className="t-potes-in">
               <div className="t-potes-video">
-                <video src="/potes/pote-solo.mp4" poster="/potes/pote-solo.jpg" autoPlay muted loop playsInline aria-label="Pote de lujo con textura de piedra girando" />
+                <img src="/potes/pote-blanco.jpg" alt="Pote de lujo blanco hueso con textura de piedra" />
               </div>
               <div className="t-potes-texto">
                 <span className="t-kicker">Potes de lujo</span>
