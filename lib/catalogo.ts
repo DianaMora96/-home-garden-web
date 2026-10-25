@@ -101,7 +101,7 @@ export const arboles: Arbol[] = [
     descripcion:
       'Copa amplia y frondosa sobre un tronco firme. Llena de verde una esquina o un área social con presencia natural.',
     riego: 'Moderado, según la luz del espacio',
-    precio: 185,
+    precio: 250,
   },
   {
     id: 'olivo-negro',
@@ -112,7 +112,7 @@ export const arboles: Arbol[] = [
     descripcion:
       'Ramas en pisos y hoja pequeña y brillante. Un árbol de líneas finas que se lee como escultura en salas y terrazas.',
     riego: 'Moderado, cuando la superficie de la tierra esté seca',
-    precio: 350,
+    precio: 250,
   },
   {
     id: 'terminalia',
