@@ -152,8 +152,19 @@ export default function CompraYappy({ arbol, cdn, activo }: { arbol: Arbol; cdn:
           </label>
           <btn-yappy ref={btnRef} theme="darkBlue" rounded="true" />
         </>
+      ) : precio != null ? (
+        <a
+          className="t-btn-tarjeta"
+          href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
+            `Hola Home & Garden, quiero pagar con Yappy la pieza ${arbol.nombre} (${arbol.altura} m).`,
+          )}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Pagar con Yappy <small>por WhatsApp</small>
+        </a>
       ) : (
-        precio == null && <p className="t-nota">Precio a consultar. Escríbenos y te enviamos fotos y disponibilidad.</p>
+        <p className="t-nota">Precio a consultar. Escríbenos y te enviamos fotos y disponibilidad.</p>
       )}
 
       {precio != null && (
