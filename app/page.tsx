@@ -243,7 +243,7 @@ export default function Tienda() {
                 <span className="t-kicker">Potes de lujo</span>
                 <h2>Hechos a mano, con textura de piedra.</h2>
                 <hr className="t-raya" />
-                <p>Potes de acabado mineral en blanco hueso, arena, gris, grafito y tierra. Cada uno con su propia textura, a la medida del árbol y del espacio.</p>
+                <p>Potes de acabado arenoso o liso en blanco hueso, arena, gris, grafito y tierra. Cada uno con su propia textura, a la medida del árbol y del espacio.</p>
                 <a
                   className="t-btn-linea"
                   href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Hola Home & Garden, me gustaría cotizar un pote de lujo.')}`}
