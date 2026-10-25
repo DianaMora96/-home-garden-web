@@ -235,6 +235,15 @@ export default function Tienda() {
           </div>
         </section>
 
+        <section className="t-mas" aria-label="Tienda de plantas en Cuanto">
+          <a className="t-mas-in" href="https://cuanto.app/homeandgarden" target="_blank" rel="noopener noreferrer">
+            <span className="t-kicker">Tienda en línea</span>
+            <h2>Compra más plantas aquí</h2>
+            <p>Palmas, plantas de interior y más de nuestro vivero, listas para comprar.</p>
+            <span className="t-btn-claro">Ir a la tienda</span>
+          </a>
+        </section>
+
         <section className="t-potes" id="potes">
           <div className="t-wrap">
             <div className="t-potes-in">
