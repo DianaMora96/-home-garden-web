@@ -267,7 +267,6 @@ export default function Tienda() {
             <div className="t-seccion-head">
               <span className="t-kicker">Proyectos</span>
               <h2>Espacios que ya llenamos de verde.</h2>
-              <p>Lobbies, terrazas y hogares en Panamá, diseñados con nuestros árboles y potes de lujo.</p>
             </div>
           </div>
           <div className="t-carrusel">
