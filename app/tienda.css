@@ -212,7 +212,7 @@
   .t-hero { grid-template-columns: 1fr; min-height: 0; }
   .t-hero-foto { order: -1; aspect-ratio: 4 / 4.2; min-height: 0; }
   .t-hero-texto { padding-right: max(20px, env(safe-area-inset-right, 0px)); }
-  .t-barra-nav a:not(.t-barra-wa) { display: none; }
+  .t-barra-nav a:not(.t-barra-wa):not(.t-barra-port) { display: none; }
   .t-barra-logo { height: 32px; }
   .t-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px 24px; }
   .t-vendidos-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
