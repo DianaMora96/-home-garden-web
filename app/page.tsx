@@ -237,7 +237,7 @@ export default function Tienda() {
           <div className="t-wrap">
             <div className="t-potes-in">
               <div className="t-potes-video">
-                <video src="/potes/pote-girando.mp4" poster="/potes/pote-girando.jpg" autoPlay muted loop playsInline aria-label="Pote de lujo blanco hueso girando" />
+                <video src="/potes/pote-solo.mp4" poster="/potes/pote-solo.jpg" autoPlay muted loop playsInline aria-label="Pote de lujo con textura de piedra girando" />
               </div>
               <div className="t-potes-texto">
                 <span className="t-kicker">Potes de lujo</span>
@@ -269,9 +269,16 @@ export default function Tienda() {
               <h2>Espacios que ya llenamos de verde.</h2>
               <p>Lobbies, terrazas y hogares en Panamá, diseñados con nuestros árboles y potes de lujo.</p>
             </div>
-            <div className="t-proyectos-grid">
-              {proyectos.map((p) => (
-                <img key={p.foto} src={`/proyectos/proyecto-${p.foto}.jpg`} alt={p.alt} loading="lazy" />
+          </div>
+          <div className="t-carrusel">
+            <div className="t-carrusel-pista">
+              {[...proyectos, ...proyectos].map((p, i) => (
+                <img
+                  key={i}
+                  src={`/proyectos/proyecto-${p.foto}.jpg`}
+                  alt={i < proyectos.length ? p.alt : ''}
+                  aria-hidden={i >= proyectos.length || undefined}
+                />
               ))}
             </div>
           </div>
