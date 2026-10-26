@@ -44,6 +44,8 @@
 .t-barra-nav a:hover { color: var(--leaf); }
 .t-barra-nav .t-barra-wa { color: #fff; background: var(--forest); padding: 0.55em 1.3em; letter-spacing: 0.08em; }
 .t-barra-nav .t-barra-wa:hover { background: var(--leaf); color: #fff; }
+.t-barra-nav .t-barra-cat { color: #fff; background: var(--leaf); padding: 0.55em 1.3em; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; }
+.t-barra-nav .t-barra-cat:hover { background: var(--forest); color: #fff; }
 
 /* Hero */
 .t-hero { display: grid; grid-template-columns: 1.05fr 1fr; min-height: 640px; background: var(--forest); color: #fff; }
@@ -219,7 +221,7 @@
   .t-hero { grid-template-columns: 1fr; min-height: 0; }
   .t-hero-foto { order: -1; aspect-ratio: 4 / 4.2; min-height: 0; }
   .t-hero-texto { padding-right: max(20px, env(safe-area-inset-right, 0px)); }
-  .t-barra-nav a:not(.t-barra-wa):not(.t-barra-port) { display: none; }
+  .t-barra-nav a:not(.t-barra-wa):not(.t-barra-port):not(.t-barra-cat) { display: none; }
   .t-barra-logo { height: 32px; }
   .t-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px 24px; }
   .t-vendidos-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
@@ -230,6 +232,8 @@
   .t-potes-video { max-width: 420px; width: 100%; margin: 0 auto; }
 }
 @media (max-width: 560px) {
+  .t-barra-nav { gap: 12px; font-size: 0.72rem; }
+  .t-barra-nav .t-barra-wa, .t-barra-nav .t-barra-cat { padding: 0.55em 0.9em; letter-spacing: 0.04em; }
   .t-hero-in { padding-top: 56px; padding-bottom: 120px; }
   .t-pilares-in, .t-servicios, .t-cuidados-grid { grid-template-columns: 1fr; }
   .t-pilares-in > div + div, .t-servicios > div + div, .t-cuidados-grid > div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--rule); }

@@ -93,6 +93,9 @@ export default function Tienda() {
             <a className="t-barra-port" href="https://homeandgardenportafolio.netlify.app/" target="_blank" rel="noopener noreferrer">
               Portafolio
             </a>
+            <a className="t-barra-cat" href="https://cuanto.app/homeandgarden" target="_blank" rel="noopener noreferrer">
+              Catálogo
+            </a>
             <a className="t-barra-wa" href={`https://wa.me/${WHATSAPP}`} target="_blank" rel="noopener noreferrer">
               WhatsApp
             </a>
