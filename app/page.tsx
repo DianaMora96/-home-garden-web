@@ -47,10 +47,15 @@ const cuidados = [
 
 const proyectos = [
   { foto: 1, alt: 'Árbol de interior en pote blanco texturizado junto a una ventana' },
+  { foto: 9, alt: 'Árbol en pote blanco ovalado en un lobby de vidrio y mármol' },
   { foto: 4, alt: 'Lobby con sofás curvos, potes de lujo y jardín tropical al fondo' },
+  { foto: 10, alt: 'Ficus en pote blanco junto al ventanal de una sala' },
   { foto: 6, alt: 'Árbol en pote de lujo gris junto a una piscina en la terraza' },
+  { foto: 11, alt: 'Árbol y planta de interior en potes texturizados en una esquina' },
   { foto: 3, alt: 'Composición de árboles en potes color arena en un lobby' },
+  { foto: 12, alt: 'Árbol de copa amplia en pote gris junto a un ventanal' },
   { foto: 7, alt: 'Clusia en pote texturizado sobre base metálica en un balcón' },
+  { foto: 13, alt: 'Grupo de árboles y helecho en potes blancos en una terraza' },
   { foto: 8, alt: 'Yuca de varios troncos en pote cilíndrico blanco' },
   { foto: 2, alt: 'Grupo de plantas en potes junto a una columna en una terraza' },
   { foto: 5, alt: 'Palma abanico, clusia y anturio en potes claros' },
