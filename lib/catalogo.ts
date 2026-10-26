@@ -111,7 +111,7 @@ export const arboles: Arbol[] = [
     etiqueta: 'Hoja menuda',
     descripcion:
       'Ramas en pisos y hoja pequeña y brillante. Un árbol de líneas finas que se lee como escultura en salas y terrazas.',
-    riego: 'Moderado, cuando la superficie de la tierra esté seca',
+    riego: 'Constante',
     precio: 250,
   },
   {
