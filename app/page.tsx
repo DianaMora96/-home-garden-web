@@ -209,6 +209,7 @@ export default function Tienda() {
                         <span>Fotografía de la pieza</span>
                       </div>
                     )}
+                    {a.nuevo && <span className="t-nuevo">New</span>}
                     <div className="t-altura">
                       <b>{a.altura} m</b>
                       <small>Altura aprox.</small>
