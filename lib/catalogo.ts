@@ -3,6 +3,7 @@
 // "Consultar" y solo se puede pedir por WhatsApp.
 // Cuando una pieza se venda, ponle `vendido: true`: pasa a la sección
 // "Ya encontraron su hogar", sin botón de compra.
+// Con `nuevo: true` la pieza muestra la etiqueta "New" sobre la foto.
 
 export const WHATSAPP = '50764943951';
 
@@ -30,10 +31,23 @@ export type Arbol = {
   riego: string;
   precio: number | null;
   vendido?: boolean;
+  nuevo?: boolean;
   foto?: string;
 };
 
 export const arboles: Arbol[] = [
+  {
+    id: 'nuevo',
+    nuevo: true,
+    foto: '/tienda/arbol-nuevo.jpg',
+    nombre: 'NOMBRE PENDIENTE',
+    altura: '0.00',
+    etiqueta: 'Hoja menuda',
+    descripcion:
+      'Varios troncos finos y una copa amplia de hoja pequeña y clara. Ligero y luminoso, llena de textura un rincón con buena luz natural.',
+    riego: 'Moderado, cuando la superficie de la tierra esté seca',
+    precio: null,
+  },
   {
     id: 'benjamina',
     foto: '/tienda/ficus-benjamina-variegado.jpg',
@@ -105,7 +119,7 @@ export const arboles: Arbol[] = [
   },
   {
     id: 'olivo-negro',
-    foto: '/tienda/olivo-negro.jpg',
+    foto: '/tienda/olivo-negro-2.jpg',
     nombre: 'Olivo negro',
     altura: '2.20',
     etiqueta: 'Hoja menuda',
@@ -139,7 +153,7 @@ export const arboles: Arbol[] = [
   },
   {
     id: 'pittosporum-2',
-    foto: '/tienda/pittosporum-tobira-2.jpg',
+    foto: '/tienda/pittosporum-tobira-2b.jpg',
     nombre: 'Pittosporum tobira',
     latin: 'Pittosporum tobira',
     altura: '1.80',
