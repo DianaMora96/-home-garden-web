@@ -37,16 +37,17 @@ export type Arbol = {
 
 export const arboles: Arbol[] = [
   {
-    id: 'nuevo',
+    id: 'jabuticaba',
     nuevo: true,
-    foto: '/tienda/arbol-nuevo.jpg',
-    nombre: 'NOMBRE PENDIENTE',
-    altura: '0.00',
+    foto: '/tienda/jabuticaba.jpg',
+    nombre: 'Jabuticaba',
+    latin: 'Plinia cauliflora',
+    altura: '1.70',
     etiqueta: 'Hoja menuda',
     descripcion:
-      'Varios troncos finos y una copa amplia de hoja pequeña y clara. Ligero y luminoso, llena de textura un rincón con buena luz natural.',
-    riego: 'Moderado, cuando la superficie de la tierra esté seca',
-    precio: null,
+      'Varios troncos finos y una copa amplia de hoja pequeña y clara. Ligera y luminosa, llena de textura un rincón con buena luz natural.',
+    riego: 'Frecuente, manteniendo la tierra ligeramente húmeda',
+    precio: 285,
   },
   {
     id: 'benjamina',
