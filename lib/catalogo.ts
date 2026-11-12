@@ -154,6 +154,7 @@ export const arboles: Arbol[] = [
   },
   {
     id: 'pittosporum-2',
+    vendido: true,
     foto: '/tienda/pittosporum-tobira-2b.jpg',
     nombre: 'Pittosporum tobira',
     latin: 'Pittosporum tobira',
