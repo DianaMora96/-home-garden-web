@@ -120,6 +120,7 @@ export const arboles: Arbol[] = [
   },
   {
     id: 'olivo-negro',
+    vendido: true,
     foto: '/tienda/olivo-negro-2.jpg',
     nombre: 'Olivo negro',
     altura: '2.20',
