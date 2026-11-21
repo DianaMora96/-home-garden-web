@@ -7,6 +7,9 @@
 
 export const WHATSAPP = '50764943951';
 
+// Dominio público de la página (para Google y redes sociales).
+export const SITIO = 'https://homeandgardenpa.com';
+
 // Datos para pago por transferencia ACH. Mientras `cuenta` esté vacía, la
 // tienda pide al cliente escribir por WhatsApp para recibir los datos.
 export const ACH = {

@@ -18,8 +18,8 @@ export default function WhatsAppButton() {
         className="px-4 py-2 rounded-full text-sm font-semibold text-white transition-all duration-300 shadow-lg"
         style={{
           background: '#25d366',
-          opacity: hovered ? 1 : 0,
-          transform: hovered ? 'translateX(0) scale(1)' : 'translateX(10px) scale(0.95)',
+          opacity: 1,
+          transform: hovered ? 'scale(1.05)' : 'scale(1)',
           whiteSpace: 'nowrap',
           pointerEvents: 'none',
         }}

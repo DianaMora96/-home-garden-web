@@ -295,3 +295,16 @@
 .t-link-wa { align-self: center; color: var(--leaf); font-weight: 800; font-size: 0.95rem; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
 .t-link-wa:hover { color: var(--forest); }
 .t-nota-fina { font-size: 0.78rem; text-align: center; padding-top: 10px; border-top: 2px dashed #d5e6c6; }
+
+/* Botón flotante de WhatsApp, siempre visible */
+.t-wa-flotante { position: fixed; z-index: 60; right: max(18px, env(safe-area-inset-right, 0px)); bottom: max(18px, env(safe-area-inset-bottom, 0px)); display: inline-flex; align-items: center; gap: 0.5em; padding: 0.7em 1.2em 0.7em 0.95em; border: var(--borde); border-radius: 999px; background: #25d366; color: #fff; box-shadow: var(--sombra); font-family: var(--t-display), sans-serif; font-weight: 800; font-size: 1.05rem; text-decoration: none; transition: transform 0.15s, box-shadow 0.15s; }
+.t-wa-flotante:hover, .t-wa-flotante:focus-visible { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--forest); outline: none; }
+.t-wa-flotante:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--forest); }
+.t-wa-flotante svg { flex: none; }
+.t-pie { padding-bottom: 72px; }
+@media (max-width: 560px) {
+  .t-wa-flotante { font-size: 0.98rem; padding: 0.65em 1.05em 0.65em 0.85em; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .t-wa-flotante { transition: none; }
+}
