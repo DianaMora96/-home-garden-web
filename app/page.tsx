@@ -32,7 +32,6 @@ export const metadata: Metadata = {
     siteName: 'Home & Garden Panamá',
     locale: 'es_PA',
     type: 'website',
-    images: [{ url: '/tienda/portada-ocean-reef.jpg', alt: 'Árbol de interior de Home & Garden, vivero de árboles en Panamá' }],
   },
 };
 
@@ -128,7 +127,7 @@ export default function Tienda() {
     description: 'Vivero de árboles en Panamá. Árboles de interior, potes de lujo, paisajismo y entrega a domicilio.',
     url: SITIO,
     logo: `${SITIO}/brand/HG-icono-color.svg`,
-    image: `${SITIO}/tienda/portada-ocean-reef.jpg`,
+    image: `${SITIO}/opengraph-image.jpg`,
     telephone: `+${WHATSAPP}`,
     priceRange: 'B/.',
     currenciesAccepted: 'PAB, USD',

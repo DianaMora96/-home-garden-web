@@ -11,10 +11,14 @@ export const metadata: Metadata = {
   description: 'Vivero de árboles en Panamá. Transformamos espacios con árboles, plantas y palmas de la más alta calidad: vivero, instalación y mantenimiento de jardines.',
   keywords: 'vivero de árboles, vivero de árboles panamá, vivero panama, plantas panama, paisajismo panama, jardines panama, arboles panama, palmas panama',
   openGraph: {
-    title: 'Home & Garden Panama',
+    title: 'Home & Garden Panamá | Vivero de árboles y paisajismo',
     description: 'Vivero de árboles, paisajismo e instalación de jardines en Panamá.',
+    siteName: 'Home & Garden Panamá',
     locale: 'es_PA',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
   },
 };
 
