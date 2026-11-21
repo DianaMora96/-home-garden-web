@@ -2,8 +2,9 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { Bricolage_Grotesque, Nunito } from 'next/font/google';
 import { ArrowRight, CreditCard, Droplets, MessageCircle, Sparkles, Sprout, Sun, TreePine, Truck, Wind } from 'lucide-react';
+import BotonWhatsApp from '@/components/tienda/BotonWhatsApp';
 import CompraYappy from '@/components/tienda/CompraYappy';
-import { arboles, formatoBalboas, WHATSAPP } from '@/lib/catalogo';
+import { arboles, formatoBalboas, SITIO, WHATSAPP } from '@/lib/catalogo';
 import { CDN, entornoYappy, yappyConfigurado } from '@/lib/yappy';
 import './tienda.css';
 
@@ -11,9 +12,28 @@ const display = Bricolage_Grotesque({ subsets: ['latin'], weight: ['600', '700',
 const body = Nunito({ subsets: ['latin'], weight: ['400', '600', '700', '800'], variable: '--t-body' });
 
 export const metadata: Metadata = {
-  title: 'Home & Garden | Tienda de árboles de interior',
+  title: { absolute: 'Vivero de árboles en Panamá | Home & Garden' },
   description:
-    'Árboles de interior, piezas únicas seleccionadas en nuestro vivero. Compra en línea con Yappy, ACH o tarjeta y recibe tu árbol a domicilio en Panamá.',
+    'Vivero de árboles en Panamá: árboles de interior, piezas únicas escogidas a mano en nuestro vivero. Compra en línea con Yappy, ACH o tarjeta y recibe tu árbol a domicilio.',
+  keywords: [
+    'vivero de árboles',
+    'vivero de árboles Panamá',
+    'vivero Panamá',
+    'árboles de interior Panamá',
+    'comprar árboles Panamá',
+    'árboles a domicilio',
+    'potes de lujo Panamá',
+  ],
+  alternates: { canonical: '/' },
+  openGraph: {
+    title: 'Vivero de árboles en Panamá | Home & Garden',
+    description: 'Árboles únicos escogidos a mano en nuestro vivero. Págalo con Yappy y te lo llevamos a domicilio.',
+    url: '/',
+    siteName: 'Home & Garden Panamá',
+    locale: 'es_PA',
+    type: 'website',
+    images: [{ url: '/tienda/portada-ocean-reef.jpg', alt: 'Árbol de interior de Home & Garden, vivero de árboles en Panamá' }],
+  },
 };
 
 export const dynamic = 'force-dynamic';
@@ -101,8 +121,36 @@ export default function Tienda() {
   const cdn = CDN[entornoYappy()];
   const wa = (texto?: string) => `https://wa.me/${WHATSAPP}${texto ? `?text=${encodeURIComponent(texto)}` : ''}`;
 
+  const negocio = {
+    '@context': 'https://schema.org',
+    '@type': 'GardenStore',
+    name: 'Home & Garden Panamá',
+    description: 'Vivero de árboles en Panamá. Árboles de interior, potes de lujo, paisajismo y entrega a domicilio.',
+    url: SITIO,
+    logo: `${SITIO}/brand/HG-icono-color.svg`,
+    image: `${SITIO}/tienda/portada-ocean-reef.jpg`,
+    telephone: `+${WHATSAPP}`,
+    priceRange: 'B/.',
+    currenciesAccepted: 'PAB, USD',
+    paymentAccepted: 'Yappy, ACH, Visa, Mastercard',
+    address: { '@type': 'PostalAddress', addressCountry: 'PA' },
+    areaServed: { '@type': 'Country', name: 'Panamá' },
+    sameAs: ['https://homeandgardenportafolio.netlify.app/', 'https://cuanto.app/homeandgarden'],
+    makesOffer: disponibles
+      .filter((a) => a.precio != null)
+      .map((a) => ({
+        '@type': 'Offer',
+        price: a.precio,
+        priceCurrency: 'USD',
+        availability: 'https://schema.org/InStock',
+        url: `${SITIO}/#${a.id}`,
+        itemOffered: { '@type': 'Product', name: a.nombre, description: a.descripcion, ...(a.foto ? { image: `${SITIO}${a.foto}` } : {}) },
+      })),
+  };
+
   return (
     <div className={`tienda ${display.variable} ${body.variable}`}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(negocio).replace(/</g, '\\u003c') }} />
       <header className="t-barra">
         <div className="t-wrap t-barra-in">
           <a href="#inicio" aria-label="Home & Garden, inicio">
@@ -135,13 +183,13 @@ export default function Tienda() {
           <div className="t-wrap t-hero-in">
             <div className="t-hero-texto">
               <span className="t-chip t-chip-sol">
-                <Sparkles size={14} strokeWidth={2.5} aria-hidden="true" /> Tienda en línea del vivero
+                <Sparkles size={14} strokeWidth={2.5} aria-hidden="true" /> Vivero de árboles en Panamá
               </span>
               <h1>
                 Árboles de interior <span className="t-subrayado">para tu casa</span>
               </h1>
               <p>
-                Cada árbol es único y lo escogemos a mano en nuestro vivero. Elige el tuyo, págalo con Yappy, tarjeta o ACH, y te lo
+                Somos un vivero de árboles en Panamá. Cada árbol es único y lo escogemos a mano. Elige el tuyo, págalo con Yappy, tarjeta o ACH, y te lo
                 llevamos a domicilio.
               </p>
               <div className="t-hero-ctas">
@@ -213,7 +261,7 @@ export default function Tienda() {
         <section className="t-coleccion" id="coleccion">
           <div className="t-wrap">
             <div className="t-seccion-head">
-              <span className="t-chip">Disponibles hoy</span>
+              <span className="t-chip">Disponibles hoy en el vivero</span>
               <h2>Elige tu árbol</h2>
               <p>Cada árbol es único: cuando se vende, sale de la tienda. Todos necesitan un espacio con buena luz natural.</p>
             </div>
@@ -223,7 +271,7 @@ export default function Tienda() {
                 <article key={a.id} id={a.id} className="t-card">
                   <div className="t-marco">
                     {a.foto ? (
-                      <img className="t-foto" src={a.foto} alt={a.nombre} />
+                      <img className="t-foto" src={a.foto} alt={`${a.nombre} de ${a.altura} m, árbol del vivero Home & Garden en Panamá`} loading="lazy" />
                     ) : (
                       <div className="t-ph">
                         <img src="/brand/HG-icono-color.svg" alt="" />
@@ -425,6 +473,7 @@ export default function Tienda() {
           </p>
         </div>
       </footer>
+      <BotonWhatsApp />
     </div>
   );
 }
