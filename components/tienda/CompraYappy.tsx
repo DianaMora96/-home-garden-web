@@ -168,13 +168,9 @@ export default function CompraYappy({ arbol, cdn, activo }: { arbol: Arbol; cdn:
       )}
 
       {precio != null && (
-        <p className="t-nota">El pago del 100% confirma tu planta. La entrega se paga aparte al coordinarla. {DIAS_ENTREGA}</p>
-      )}
-
-      {precio != null && (
         <>
           <a
-            className="t-btn-tarjeta"
+            className="t-btn-tarjeta t-btn-sec"
             href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
               `Hola Home & Garden, quiero pagar con tarjeta la pieza ${arbol.nombre} (${arbol.altura} m). ¿Me envían el enlace de pago?`,
             )}`}
@@ -235,9 +231,18 @@ export default function CompraYappy({ arbol, cdn, activo }: { arbol: Arbol; cdn:
         </p>
       )}
 
-      <a className="t-btn-linea" href={`https://wa.me/${WHATSAPP}?text=${textoWa}`} target="_blank" rel="noopener noreferrer">
-        {precio == null ? 'Consultar por WhatsApp' : 'Preguntar por WhatsApp'}
+      <a
+        className={precio == null ? 't-btn-tarjeta' : 't-link-wa'}
+        href={`https://wa.me/${WHATSAPP}?text=${textoWa}`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {precio == null ? 'Consultar por WhatsApp' : '¿Dudas? Pregúntanos por WhatsApp'}
       </a>
+
+      {precio != null && (
+        <p className="t-nota t-nota-fina">El pago del 100% confirma tu planta. La entrega se paga aparte al coordinarla. {DIAS_ENTREGA}</p>
+      )}
     </div>
   );
 }
