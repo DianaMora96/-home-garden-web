@@ -1,18 +1,14 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { Cormorant_Garamond, Poppins } from 'next/font/google';
+import { Bricolage_Grotesque, Nunito } from 'next/font/google';
+import { ArrowRight, CreditCard, Droplets, MessageCircle, Sparkles, Sprout, Sun, TreePine, Truck, Wind } from 'lucide-react';
 import CompraYappy from '@/components/tienda/CompraYappy';
 import { arboles, formatoBalboas, WHATSAPP } from '@/lib/catalogo';
 import { CDN, entornoYappy, yappyConfigurado } from '@/lib/yappy';
 import './tienda.css';
 
-const display = Cormorant_Garamond({
-  subsets: ['latin'],
-  weight: ['500', '600'],
-  style: ['normal', 'italic'],
-  variable: '--t-display',
-});
-const body = Poppins({ subsets: ['latin'], weight: ['300', '400', '500', '600'], variable: '--t-body' });
+const display = Bricolage_Grotesque({ subsets: ['latin'], weight: ['600', '700', '800'], variable: '--t-display' });
+const body = Nunito({ subsets: ['latin'], weight: ['400', '600', '700', '800'], variable: '--t-body' });
 
 export const metadata: Metadata = {
   title: 'Home & Garden | Tienda de árboles de interior',
@@ -25,21 +21,29 @@ export const dynamic = 'force-dynamic';
 const cuidados = [
   {
     tema: 'Luz',
+    Icono: Sun,
+    color: 'sol',
     titulo: 'Cerca de la ventana',
     texto: 'Ubícalo donde reciba abundante luz natural durante el día, sin sol directo intenso sobre las hojas detrás del vidrio.',
   },
   {
     tema: 'Riego',
+    Icono: Droplets,
+    color: 'cielo',
     titulo: 'Solo cuando lo pida',
     texto: 'Riega cuando los primeros centímetros de tierra estén secos. Evita que quede agua acumulada en el plato.',
   },
   {
     tema: 'Adaptación',
+    Icono: Sprout,
+    color: 'lima',
     titulo: 'Las primeras semanas',
     texto: 'Es normal que pierda algunas hojas al cambiar de espacio. Evita moverlo de lugar mientras se adapta.',
   },
   {
     tema: 'Ambiente',
+    Icono: Wind,
+    color: 'coral',
     titulo: 'Lejos del aire directo',
     texto: 'No lo coloques frente al aire acondicionado. Limpia las hojas con un paño húmedo para que respiren mejor.',
   },
@@ -61,13 +65,31 @@ const proyectos = [
   { foto: 5, alt: 'Palma abanico, clusia y anturio en potes claros' },
 ];
 
-function Ondas({ className }: { className: string }) {
+const pasos = [
+  {
+    Icono: TreePine,
+    titulo: 'Elige tu árbol',
+    texto: 'Cada árbol es único. Mira la foto, la altura y el precio.',
+  },
+  {
+    Icono: CreditCard,
+    titulo: 'Págalo como quieras',
+    texto: 'Yappy aquí mismo, tarjeta Visa o Mastercard, o transferencia ACH.',
+  },
+  {
+    Icono: Truck,
+    titulo: 'Te lo llevamos',
+    texto: 'Entregamos jueves o viernes. B/. 15 por árbol, zonas aplican.',
+  },
+];
+
+const cinta = ['Piezas únicas', 'Paga con Yappy', 'Entrega jueves y viernes', 'Directo del vivero', 'Potes hechos a mano'];
+
+function Hoja({ className }: { className: string }) {
   return (
-    <svg className={className} viewBox="0 0 800 400" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M0 150 C 160 90, 300 210, 460 150 S 700 90, 800 140 L 800 400 L 0 400 Z" fill="#1F7A3F" opacity=".28" />
-      <path d="M0 220 C 180 160, 320 270, 500 215 S 720 170, 800 205 L 800 400 L 0 400 Z" fill="#2A9446" opacity=".22" />
-      <path d="M0 300 C 200 250, 360 340, 540 295 S 740 260, 800 285 L 800 400 L 0 400 Z" fill="#16301F" opacity=".55" />
-      <path d="M0 150 C 160 90, 300 210, 460 150 S 700 90, 800 140" fill="none" stroke="#8DC63F" strokeWidth="1.2" opacity=".55" />
+    <svg className={className} viewBox="0 0 120 120" aria-hidden="true">
+      <path d="M60 8C28 30 18 62 30 94c8 18 22 20 30 18 8 2 22 0 30-18C102 62 92 30 60 8Z" fill="currentColor" />
+      <path d="M60 30v80M60 56l-16-12M60 74l18-14M60 92l-14-10" stroke="rgba(0,0,0,.18)" strokeWidth="4" strokeLinecap="round" fill="none" />
     </svg>
   );
 }
@@ -77,6 +99,7 @@ export default function Tienda() {
   const vendidos = arboles.filter((a) => a.vendido);
   const activo = yappyConfigurado();
   const cdn = CDN[entornoYappy()];
+  const wa = (texto?: string) => `https://wa.me/${WHATSAPP}${texto ? `?text=${encodeURIComponent(texto)}` : ''}`;
 
   return (
     <div className={`tienda ${display.variable} ${body.variable}`}>
@@ -86,7 +109,8 @@ export default function Tienda() {
             <img src="/brand/HG-logo-horizontal-color.svg" alt="Home & Garden" className="t-barra-logo" />
           </a>
           <nav className="t-barra-nav" aria-label="Secciones">
-            <a href="#coleccion">Colección</a>
+            <a href="#coleccion">Árboles</a>
+            <a href="#como-comprar">Cómo comprar</a>
             <a href="#potes">Potes</a>
             <a href="#proyectos">Proyectos</a>
             <a href="#cuidados">Cuidados</a>
@@ -96,7 +120,8 @@ export default function Tienda() {
             <a className="t-barra-cat" href="https://cuanto.app/homeandgarden" target="_blank" rel="noopener noreferrer">
               Catálogo
             </a>
-            <a className="t-barra-wa" href={`https://wa.me/${WHATSAPP}`} target="_blank" rel="noopener noreferrer">
+            <a className="t-barra-wa" href={wa()} target="_blank" rel="noopener noreferrer">
+              <MessageCircle size={16} strokeWidth={2.5} aria-hidden="true" />
               WhatsApp
             </a>
           </nav>
@@ -105,100 +130,96 @@ export default function Tienda() {
 
       <main>
         <section className="t-hero" id="inicio">
-          <div className="t-hero-texto">
-            <Ondas className="t-ondas" />
-            <div className="t-hero-in">
-              <span className="t-pill">
-                <i className="t-dot" />
-                Pieza única
-                <i className="t-dot" />
+          <Hoja className="t-hoja t-hoja-1" />
+          <Hoja className="t-hoja t-hoja-2" />
+          <div className="t-wrap t-hero-in">
+            <div className="t-hero-texto">
+              <span className="t-chip t-chip-sol">
+                <Sparkles size={14} strokeWidth={2.5} aria-hidden="true" /> Tienda en línea del vivero
               </span>
-              <span className="t-kicker t-kicker-lima">Tienda en línea</span>
-              <h1>Árboles de interior</h1>
-              <hr className="t-raya" />
-              <p>Piezas únicas, seleccionadas una a una en nuestro vivero. Págalas con Yappy, ACH o tarjeta y te las llevamos a domicilio.</p>
-              <a className="t-btn-claro" href="#coleccion">
-                Ver la colección
-              </a>
+              <h1>
+                Árboles de interior <span className="t-subrayado">para tu casa</span>
+              </h1>
+              <p>
+                Cada árbol es único y lo escogemos a mano en nuestro vivero. Elige el tuyo, págalo con Yappy, tarjeta o ACH, y te lo
+                llevamos a domicilio.
+              </p>
+              <div className="t-hero-ctas">
+                <a className="t-btn t-btn-sol" href="#coleccion">
+                  Ver los árboles <ArrowRight size={18} strokeWidth={2.5} aria-hidden="true" />
+                </a>
+                <a className="t-btn t-btn-blanco" href={wa('Hola Home & Garden, quiero información sobre sus árboles.')} target="_blank" rel="noopener noreferrer">
+                  <MessageCircle size={18} strokeWidth={2.5} aria-hidden="true" /> Escríbenos
+                </a>
+              </div>
+              <ul className="t-hero-datos">
+                <li>
+                  <b>{disponibles.length}</b> árboles disponibles
+                </li>
+                <li>
+                  <b>B/. 15</b> entrega
+                </li>
+                <li>
+                  <b>Jue · Vie</b> días de entrega
+                </li>
+              </ul>
             </div>
-          </div>
-          <div className="t-hero-foto">
-            <Image
-              src="/tienda/portada-ocean-reef.jpg"
-              alt="Árbol de interior en maceta blanca bajo un arco, en una sala frente al mar"
-              fill
-              priority
-              sizes="(max-width: 860px) 100vw, 50vw"
-            />
+            <div className="t-hero-foto">
+              <Image
+                src="/tienda/portada-ocean-reef.jpg"
+                alt="Árbol de interior en maceta blanca bajo un arco, en una sala frente al mar"
+                fill
+                priority
+                sizes="(max-width: 860px) 100vw, 50vw"
+              />
+              <span className="t-hero-sticker">
+                Pieza
+                <br />
+                única
+              </span>
+            </div>
           </div>
         </section>
 
-        <section className="t-pilares">
-          <div className="t-wrap t-pilares-in">
-            <div>
-              <h3>Selección</h3>
-              <p>Ejemplares escogidos por forma, follaje y salud.</p>
+        <div className="t-cinta" aria-hidden="true">
+          <div className="t-cinta-pista">
+            {[...cinta, ...cinta, ...cinta, ...cinta].map((c, i) => (
+              <span key={i}>
+                {c} <Sprout size={18} strokeWidth={2.5} />
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <section className="t-pasos" id="como-comprar">
+          <div className="t-wrap">
+            <div className="t-seccion-head t-centro">
+              <span className="t-chip">Cómo comprar</span>
+              <h2>Así de fácil, en 3 pasos</h2>
             </div>
-            <div>
-              <h3>Yappy, ACH o tarjeta</h3>
-              <p>Paga tu pieza como prefieras, Visa o Mastercard incluidas.</p>
-            </div>
-            <div>
-              <h3>Entrega a domicilio</h3>
-              <p>B/. 15 por árbol, jueves o viernes. Zonas aplican.</p>
-            </div>
+            <ol className="t-pasos-grid">
+              {pasos.map(({ Icono, titulo, texto }, i) => (
+                <li key={titulo}>
+                  <span className="t-paso-num">{i + 1}</span>
+                  <Icono className="t-paso-icono" size={34} strokeWidth={2.2} aria-hidden="true" />
+                  <h3>{titulo}</h3>
+                  <p>{texto}</p>
+                </li>
+              ))}
+            </ol>
           </div>
         </section>
-
-        {vendidos.length > 0 && (
-          <section className="t-vendidos" id="vendidos">
-            <div className="t-wrap">
-              <div className="t-seccion-head">
-                <span className="t-kicker">Vendidos</span>
-                <h2>Ya encontraron su hogar.</h2>
-                <p>Cada pieza es única y no se repite. Si te gustó alguna de estas, escríbenos y buscamos una similar en el vivero.</p>
-              </div>
-              <div className="t-vendidos-grid">
-                {vendidos.map((a) => (
-                  <article key={a.id} className="t-vendido">
-                    <div className="t-marco">
-                      {a.foto ? (
-                        <img className="t-foto" src={a.foto} alt={a.nombre} />
-                      ) : (
-                        <div className="t-ph">
-                          <img src="/brand/HG-icono-color.svg" alt="" />
-                        </div>
-                      )}
-                      <span className="t-sello">Vendido</span>
-                    </div>
-                    <h3>{a.nombre}</h3>
-                    <p>{a.altura} m · {a.etiqueta}</p>
-                    {a.precio != null && <p className="t-vendido-precio">Vendido en {formatoBalboas(a.precio)}</p>}
-                  </article>
-                ))}
-              </div>
-              <a
-                className="t-btn-linea t-vendidos-cta"
-                href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Hola Home & Garden, me gustaría un árbol similar a uno de los vendidos en la tienda.')}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Quiero uno similar
-              </a>
-            </div>
-          </section>
-        )}
 
         <section className="t-coleccion" id="coleccion">
           <div className="t-wrap">
             <div className="t-seccion-head">
-              <span className="t-kicker">La colección</span>
-              <h2>Cada árbol es una pieza única.</h2>
-              <p>Cuando una pieza se vende, sale de la tienda. Recomendamos que el espacio interior cuente con excelente iluminación natural.</p>
+              <span className="t-chip">Disponibles hoy</span>
+              <h2>Elige tu árbol</h2>
+              <p>Cada árbol es único: cuando se vende, sale de la tienda. Todos necesitan un espacio con buena luz natural.</p>
             </div>
 
             <div className="t-grid">
-              {disponibles.map((a, i) => (
+              {disponibles.map((a) => (
                 <article key={a.id} id={a.id} className="t-card">
                   <div className="t-marco">
                     {a.foto ? (
@@ -206,20 +227,16 @@ export default function Tienda() {
                     ) : (
                       <div className="t-ph">
                         <img src="/brand/HG-icono-color.svg" alt="" />
-                        <span>Fotografía de la pieza</span>
+                        <span>Foto pronto</span>
                       </div>
                     )}
                     {a.nuevo && <span className="t-nuevo">New</span>}
-                    <div className="t-altura">
-                      <b>{a.altura} m</b>
-                      <small>Altura aprox.</small>
-                    </div>
+                    <span className="t-altura">
+                      <b>{a.altura} m</b> de alto
+                    </span>
                   </div>
                   <div className="t-card-info">
-                    <div className="t-info-top">
-                      <span className="t-kicker">{String(i + 1).padStart(2, '0')} · Pieza única</span>
-                      <span className="t-etiqueta">{a.etiqueta}</span>
-                    </div>
+                    <span className="t-etiqueta">{a.etiqueta}</span>
                     <h3>{a.nombre}</h3>
                     {a.latin && <p className="t-latin">{a.latin}</p>}
                     <p className="t-desc">{a.descripcion}</p>
@@ -244,12 +261,57 @@ export default function Tienda() {
           </div>
         </section>
 
+        {vendidos.length > 0 && (
+          <section className="t-vendidos" id="vendidos">
+            <div className="t-wrap">
+              <div className="t-seccion-head">
+                <span className="t-chip t-chip-coral">Vendidos</span>
+                <h2>Ya encontraron su hogar</h2>
+                <p>Cada pieza es única y no se repite. ¿Te gustó alguna? Escríbenos y buscamos una parecida en el vivero.</p>
+              </div>
+              <div className="t-vendidos-grid">
+                {vendidos.map((a) => (
+                  <article key={a.id} className="t-vendido">
+                    <div className="t-marco">
+                      {a.foto ? (
+                        <img className="t-foto" src={a.foto} alt={a.nombre} />
+                      ) : (
+                        <div className="t-ph">
+                          <img src="/brand/HG-icono-color.svg" alt="" />
+                        </div>
+                      )}
+                      <span className="t-sello">Vendido</span>
+                    </div>
+                    <h3>{a.nombre}</h3>
+                    <p>
+                      {a.altura} m · {a.etiqueta}
+                    </p>
+                    {a.precio != null && <p className="t-vendido-precio">Vendido en {formatoBalboas(a.precio)}</p>}
+                  </article>
+                ))}
+              </div>
+              <a
+                className="t-btn t-btn-verde t-vendidos-cta"
+                href={wa('Hola Home & Garden, me gustaría un árbol similar a uno de los vendidos en la tienda.')}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Quiero uno parecido <ArrowRight size={18} strokeWidth={2.5} aria-hidden="true" />
+              </a>
+            </div>
+          </section>
+        )}
+
         <section className="t-mas" aria-label="Tienda de plantas en Cuanto">
-          <a className="t-mas-in" href="https://cuanto.app/homeandgarden" target="_blank" rel="noopener noreferrer">
-            <span className="t-kicker">Tienda en línea</span>
-            <h2>Compra más plantas aquí</h2>
-            <p>Palmas, plantas de interior y más de nuestro vivero, listas para enviar a tu hogar.</p>
-            <span className="t-btn-claro">Ir a la tienda</span>
+          <a className="t-wrap t-mas-in" href="https://cuanto.app/homeandgarden" target="_blank" rel="noopener noreferrer">
+            <div>
+              <span className="t-chip t-chip-sol">¿Buscas algo más pequeño?</span>
+              <h2>Compra más plantas aquí</h2>
+              <p>Palmas, plantas de interior y más de nuestro vivero, listas para enviar a tu hogar.</p>
+            </div>
+            <span className="t-btn t-btn-sol">
+              Ir a la tienda <ArrowRight size={18} strokeWidth={2.5} aria-hidden="true" />
+            </span>
           </a>
         </section>
 
@@ -260,17 +322,19 @@ export default function Tienda() {
                 <img src="/potes/pote-blanco.jpg" alt="Pote de lujo blanco hueso con textura de piedra" />
               </div>
               <div className="t-potes-texto">
-                <span className="t-kicker">Potes de lujo</span>
-                <h2>Hechos a mano, con textura de piedra.</h2>
-                <hr className="t-raya" />
-                <p>Potes de acabado arenoso o liso en blanco hueso, arena, gris, grafito y tierra. Cada uno con su propia textura, a la medida del árbol y del espacio.</p>
-                <a
-                  className="t-btn-linea"
-                  href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Hola Home & Garden, me gustaría cotizar un pote de lujo.')}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Cotizar un pote
+                <span className="t-chip t-chip-coral">Potes de lujo</span>
+                <h2>Hechos a mano, con textura de piedra</h2>
+                <p>
+                  Acabado arenoso o liso en blanco hueso, arena, gris, grafito y tierra. Cada uno con su propia textura, a la medida de tu árbol y
+                  tu espacio.
+                </p>
+                <div className="t-colores" aria-label="Colores disponibles">
+                  {['#efe9dd', '#d8c3a0', '#a8a8a3', '#4a4a48', '#9a6a4a'].map((c) => (
+                    <i key={c} style={{ background: c }} />
+                  ))}
+                </div>
+                <a className="t-btn t-btn-verde" href={wa('Hola Home & Garden, me gustaría cotizar un pote de lujo.')} target="_blank" rel="noopener noreferrer">
+                  Cotizar un pote <ArrowRight size={18} strokeWidth={2.5} aria-hidden="true" />
                 </a>
               </div>
             </div>
@@ -285,8 +349,8 @@ export default function Tienda() {
         <section className="t-proyectos" id="proyectos">
           <div className="t-wrap">
             <div className="t-seccion-head">
-              <span className="t-kicker">Proyectos</span>
-              <h2>Espacios que ya llenamos de verde.</h2>
+              <span className="t-chip">Proyectos</span>
+              <h2>Espacios que ya llenamos de verde</h2>
             </div>
           </div>
           <div className="t-carrusel">
@@ -306,15 +370,18 @@ export default function Tienda() {
         <section className="t-cuidados" id="cuidados">
           <div className="t-wrap">
             <div className="t-seccion-head">
-              <span className="t-kicker">Guía de cuidados</span>
-              <h2>Para que tu árbol luzca siempre como el primer día.</h2>
+              <span className="t-chip">Guía de cuidados</span>
+              <h2>Para que tu árbol siga feliz</h2>
             </div>
             <div className="t-cuidados-grid">
-              {cuidados.map((c) => (
-                <div key={c.tema}>
-                  <span className="t-kicker">{c.tema}</span>
-                  <h3>{c.titulo}</h3>
-                  <p>{c.texto}</p>
+              {cuidados.map(({ tema, Icono, color, titulo, texto }) => (
+                <div key={tema} className={`t-cuidado t-c-${color}`}>
+                  <span className="t-cuidado-icono">
+                    <Icono size={28} strokeWidth={2.4} aria-hidden="true" />
+                  </span>
+                  <span className="t-cuidado-tema">{tema}</span>
+                  <h3>{titulo}</h3>
+                  <p>{texto}</p>
                 </div>
               ))}
             </div>
@@ -322,10 +389,9 @@ export default function Tienda() {
         </section>
 
         <section className="t-cierre">
-          <Ondas className="t-ondas" />
+          <Hoja className="t-hoja t-hoja-3" />
           <div className="t-wrap t-cierre-in">
-            <span className="t-kicker t-kicker-lima">Del vivero a tu nuevo espacio</span>
-            <h2>¿Buscas otra pieza?</h2>
+            <h2>¿No encuentras el árbol ideal?</h2>
             <p>Escríbenos para ver más fotos, pedir un árbol especial o agendar una visita a nuestro vivero.</p>
             <div className="t-servicios">
               <div>
@@ -341,8 +407,8 @@ export default function Tienda() {
                 <span>Visitas para que siga sano.</span>
               </div>
             </div>
-            <a className="t-btn-claro" href={`https://wa.me/${WHATSAPP}`} target="_blank" rel="noopener noreferrer">
-              Escríbenos por WhatsApp
+            <a className="t-btn t-btn-sol t-btn-grande" href={wa()} target="_blank" rel="noopener noreferrer">
+              <MessageCircle size={20} strokeWidth={2.5} aria-hidden="true" /> Escríbenos por WhatsApp
             </a>
           </div>
         </section>
@@ -351,7 +417,8 @@ export default function Tienda() {
       <footer className="t-pie">
         <div className="t-wrap t-pie-in">
           <img src="/brand/HG-logo-horizontal-blanco.svg" alt="Home & Garden, vivero y paisajismo" />
-          <p>© {new Date().getFullYear()} Home & Garden Panamá · Pagos seguros con Yappy, ACH y tarjeta ·{' '}
+          <p>
+            © {new Date().getFullYear()} Home & Garden Panamá · Pagos seguros con Yappy, ACH y tarjeta ·{' '}
             <a className="t-pie-equipo" href="https://homeandgarden-crm.vercel.app">
               Acceso equipo
             </a>
