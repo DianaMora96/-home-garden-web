@@ -5,15 +5,17 @@ import { ArrowRight, CreditCard, Droplets, MessageCircle, Sparkles, Sprout, Sun,
 import CompraYappy from '@/components/tienda/CompraYappy';
 import { arboles, formatoBalboas, WHATSAPP } from '@/lib/catalogo';
 import { CDN, entornoYappy, yappyConfigurado } from '@/lib/yappy';
+import { NOMBRE, SITIO } from '@/lib/sitio';
 import './tienda.css';
 
 const display = Bricolage_Grotesque({ subsets: ['latin'], weight: ['600', '700', '800'], variable: '--t-display' });
 const body = Nunito({ subsets: ['latin'], weight: ['400', '600', '700', '800'], variable: '--t-body' });
 
 export const metadata: Metadata = {
-  title: 'Home & Garden | Tienda de árboles de interior',
+  title: { absolute: 'Vivero de árboles en Panamá | Home & Garden' },
   description:
-    'Árboles de interior, piezas únicas seleccionadas en nuestro vivero. Compra en línea con Yappy, ACH o tarjeta y recibe tu árbol a domicilio en Panamá.',
+    'Vivero de árboles en Panamá: árboles de interior, piezas únicas escogidas a mano. Compra en línea con Yappy, tarjeta o ACH y recibe tu árbol a domicilio.',
+  alternates: { canonical: '/' },
 };
 
 export const dynamic = 'force-dynamic';
@@ -101,8 +103,66 @@ export default function Tienda() {
   const cdn = CDN[entornoYappy()];
   const wa = (texto?: string) => `https://wa.me/${WHATSAPP}${texto ? `?text=${encodeURIComponent(texto)}` : ''}`;
 
+  // Datos estructurados para Google: el negocio (vivero local) y los árboles a la venta.
+  const datosGoogle = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': ['GardenStore', 'LocalBusiness'],
+        '@id': `${SITIO}/#vivero`,
+        name: NOMBRE,
+        alternateName: 'Home & Garden, vivero de árboles',
+        description: 'Vivero de árboles en Panamá. Árboles de interior, palmas y plantas, con entrega a domicilio.',
+        url: SITIO,
+        logo: `${SITIO}/brand/HG-icono-color.svg`,
+        image: `${SITIO}/opengraph-image.jpg`,
+        telephone: `+${WHATSAPP}`,
+        priceRange: 'B/.',
+        currenciesAccepted: 'PAB, USD',
+        paymentAccepted: 'Yappy, tarjeta de crédito, transferencia ACH',
+        address: { '@type': 'PostalAddress', addressCountry: 'PA' },
+        areaServed: { '@type': 'Country', name: 'Panamá' },
+        sameAs: ['https://homeandgardenportafolio.netlify.app/'],
+      },
+      {
+        '@type': 'ItemList',
+        name: 'Árboles de interior disponibles',
+        itemListElement: disponibles.map((a, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          item: {
+            '@type': 'Product',
+            '@id': `${SITIO}/#${a.id}`,
+            name: a.nombre,
+            description: a.descripcion,
+            url: `${SITIO}/#${a.id}`,
+            ...(a.foto ? { image: `${SITIO}${a.foto}` } : {}),
+            category: 'Árboles de interior',
+            brand: { '@id': `${SITIO}/#vivero` },
+            ...(a.precio != null
+              ? {
+                  offers: {
+                    '@type': 'Offer',
+                    price: a.precio,
+                    priceCurrency: 'USD',
+                    availability: 'https://schema.org/InStock',
+                    itemCondition: 'https://schema.org/NewCondition',
+                    seller: { '@id': `${SITIO}/#vivero` },
+                  },
+                }
+              : {}),
+          },
+        })),
+      },
+    ],
+  };
+
   return (
     <div className={`tienda ${display.variable} ${body.variable}`}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(datosGoogle).replace(/</g, '\\u003c') }}
+      />
       <header className="t-barra">
         <div className="t-wrap t-barra-in">
           <a href="#inicio" aria-label="Home & Garden, inicio">
@@ -135,7 +195,7 @@ export default function Tienda() {
           <div className="t-wrap t-hero-in">
             <div className="t-hero-texto">
               <span className="t-chip t-chip-sol">
-                <Sparkles size={14} strokeWidth={2.5} aria-hidden="true" /> Tienda en línea del vivero
+                <Sparkles size={14} strokeWidth={2.5} aria-hidden="true" /> Vivero de árboles en Panamá
               </span>
               <h1>
                 Árboles de interior <span className="t-subrayado">para tu casa</span>
@@ -223,7 +283,7 @@ export default function Tienda() {
                 <article key={a.id} id={a.id} className="t-card">
                   <div className="t-marco">
                     {a.foto ? (
-                      <img className="t-foto" src={a.foto} alt={a.nombre} />
+                      <img className="t-foto" src={a.foto} alt={`${a.nombre}, árbol de interior de ${a.altura} m`} loading="lazy" />
                     ) : (
                       <div className="t-ph">
                         <img src="/brand/HG-icono-color.svg" alt="" />
