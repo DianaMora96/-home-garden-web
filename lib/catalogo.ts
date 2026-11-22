@@ -271,7 +271,7 @@ export const regalos: Regalo[] = [
     id: 'aglaonema-silver-bay',
     nombre: 'Aglaonema Silver Bay',
     descripcion: 'Hojas verdes con plateado. Elegante y muy resistente en interior.',
-    precio: 20,
+    precio: 25,
     cuanto: 'https://cuanto.app/homeandgarden/p/35aa01',
   },
   {
