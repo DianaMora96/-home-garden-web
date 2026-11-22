@@ -45,8 +45,8 @@ const cuidados = [
     tema: 'Luz',
     Icono: Sun,
     color: 'sol',
-    titulo: 'Cerca de la ventana',
-    texto: 'Ubícalo donde reciba abundante luz natural durante el día, sin sol directo intenso sobre las hojas detrás del vidrio.',
+    titulo: 'La luz que pide cada una',
+    texto: 'Cada planta necesita una luz distinta. Sigue la recomendación de luz que aparece en la descripción de tu planta.',
   },
   {
     tema: 'Riego',
@@ -478,7 +478,7 @@ export default function Tienda() {
           <div className="t-wrap">
             <div className="t-seccion-head">
               <span className="t-chip">Guía de cuidados</span>
-              <h2>Para que tu árbol siga feliz</h2>
+              <h2>Para que tu planta siga feliz</h2>
             </div>
             <div className="t-cuidados-grid">
               {cuidados.map(({ tema, Icono, color, titulo, texto }) => (
