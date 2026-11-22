@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { Bricolage_Grotesque, Nunito } from 'next/font/google';
-import { ArrowRight, CreditCard, Droplets, MessageCircle, Sparkles, Sprout, Sun, TreePine, Truck, Wind } from 'lucide-react';
+import { ArrowRight, CreditCard, Droplets, Gift, MessageCircle, RefreshCw, Sparkles, Sprout, Sun, TreePine, Truck, Wind } from 'lucide-react';
 import BotonWhatsApp from '@/components/tienda/BotonWhatsApp';
 import CompraYappy from '@/components/tienda/CompraYappy';
-import { arboles, formatoBalboas, SITIO, WHATSAPP } from '@/lib/catalogo';
+import { arboles, formatoBalboas, regalos, SITIO, WHATSAPP } from '@/lib/catalogo';
 import { CDN, entornoYappy, yappyConfigurado } from '@/lib/yappy';
 import './tienda.css';
 
@@ -12,22 +12,25 @@ const display = Bricolage_Grotesque({ subsets: ['latin'], weight: ['600', '700',
 const body = Nunito({ subsets: ['latin'], weight: ['400', '600', '700', '800'], variable: '--t-body' });
 
 export const metadata: Metadata = {
-  title: { absolute: 'Vivero de árboles en Panamá | Home & Garden' },
+  title: { absolute: 'Vivero de árboles, palmas y plantas de interior en Panamá | Home & Garden' },
   description:
-    'Vivero de árboles en Panamá: árboles de interior, piezas únicas escogidas a mano en nuestro vivero. Compra en línea con Yappy, ACH o tarjeta y recibe tu árbol a domicilio.',
+    'Vivero de árboles, palmas y plantas de interior en Panamá. Árboles únicos escogidos a mano, nuevo lote cada semana y regalos de Navidad desde B/. 5.95. Paga con Yappy, ACH o tarjeta y te lo llevamos a domicilio.',
   keywords: [
     'vivero de árboles',
     'vivero de árboles Panamá',
     'vivero Panamá',
     'árboles de interior Panamá',
+    'plantas de interior Panamá',
+    'palmas Panamá',
+    'regalos de Navidad plantas Panamá',
     'comprar árboles Panamá',
     'árboles a domicilio',
     'potes de lujo Panamá',
   ],
   alternates: { canonical: '/' },
   openGraph: {
-    title: 'Vivero de árboles en Panamá | Home & Garden',
-    description: 'Árboles únicos escogidos a mano en nuestro vivero. Págalo con Yappy y te lo llevamos a domicilio.',
+    title: 'Vivero de árboles, palmas y plantas de interior en Panamá | Home & Garden',
+    description: 'Árboles, palmas y plantas de interior escogidos a mano en nuestro vivero. Págalo con Yappy y te lo llevamos a domicilio.',
     url: '/',
     siteName: 'Home & Garden Panamá',
     locale: 'es_PA',
@@ -87,8 +90,8 @@ const proyectos = [
 const pasos = [
   {
     Icono: TreePine,
-    titulo: 'Elige tu árbol',
-    texto: 'Cada árbol es único. Mira la foto, la altura y el precio.',
+    titulo: 'Elige tu planta',
+    texto: 'Cada planta es única. Mira la foto, la altura y el precio.',
   },
   {
     Icono: CreditCard,
@@ -124,7 +127,7 @@ export default function Tienda() {
     '@context': 'https://schema.org',
     '@type': 'GardenStore',
     name: 'Home & Garden Panamá',
-    description: 'Vivero de árboles en Panamá. Árboles de interior, potes de lujo, paisajismo y entrega a domicilio.',
+    description: 'Vivero de árboles, palmas y plantas de interior en Panamá. Potes de lujo, paisajismo y entrega a domicilio.',
     url: SITIO,
     logo: `${SITIO}/brand/HG-icono-color.svg`,
     image: `${SITIO}/opengraph-image.jpg`,
@@ -156,6 +159,9 @@ export default function Tienda() {
             <img src="/brand/HG-logo-horizontal-color.svg" alt="Home & Garden" className="t-barra-logo" />
           </a>
           <nav className="t-barra-nav" aria-label="Secciones">
+            <a className="t-barra-regalos" href="#regalos">
+              <Gift size={15} strokeWidth={2.5} aria-hidden="true" /> Regalos
+            </a>
             <a href="#coleccion">Árboles</a>
             <a href="#como-comprar">Cómo comprar</a>
             <a href="#potes">Potes</a>
@@ -182,18 +188,18 @@ export default function Tienda() {
           <div className="t-wrap t-hero-in">
             <div className="t-hero-texto">
               <span className="t-chip t-chip-sol">
-                <Sparkles size={14} strokeWidth={2.5} aria-hidden="true" /> Vivero de árboles en Panamá
+                <Sparkles size={14} strokeWidth={2.5} aria-hidden="true" /> Vivero de árboles, palmas y plantas de interior
               </span>
               <h1>
                 Árboles de interior <span className="t-subrayado">para tu casa</span>
               </h1>
               <p>
-                Somos un vivero de árboles en Panamá. Cada árbol es único y lo escogemos a mano. Elige el tuyo, págalo con Yappy, tarjeta o ACH, y te lo
+                Somos un vivero de árboles, palmas y plantas de interior en Panamá. Cada árbol es único y lo escogemos a mano. Elige el tuyo, págalo con Yappy, tarjeta o ACH, y te lo
                 llevamos a domicilio.
               </p>
               <div className="t-hero-ctas">
                 <a className="t-btn t-btn-sol" href="#coleccion">
-                  Ver los árboles <ArrowRight size={18} strokeWidth={2.5} aria-hidden="true" />
+                  Ver árboles de interior <ArrowRight size={18} strokeWidth={2.5} aria-hidden="true" />
                 </a>
                 <a className="t-btn t-btn-blanco" href={wa('Hola Home & Garden, quiero información sobre sus árboles.')} target="_blank" rel="noopener noreferrer">
                   <MessageCircle size={18} strokeWidth={2.5} aria-hidden="true" /> Escríbenos
@@ -202,6 +208,9 @@ export default function Tienda() {
               <ul className="t-hero-datos">
                 <li>
                   <b>{disponibles.length}</b> árboles disponibles
+                </li>
+                <li className="t-dato-nuevo">
+                  <RefreshCw size={14} strokeWidth={2.6} aria-hidden="true" /> <b>Nuevo lote</b> cada semana
                 </li>
                 <li>
                   <b>B/. 15</b> entrega
@@ -238,6 +247,57 @@ export default function Tienda() {
           </div>
         </div>
 
+        {regalos.length > 0 && (
+          <section className="t-regalos" id="regalos">
+            <div className="t-wrap">
+              <div className="t-seccion-head t-centro">
+                <span className="t-chip t-chip-coral">
+                  <Gift size={14} strokeWidth={2.5} aria-hidden="true" /> Navidad · Secret Santa
+                </span>
+                <h2>Regala una planta, desde {formatoBalboas(Math.min(...regalos.map((g) => g.precio)))}</h2>
+                <p>Regalitos verdes para el amigo secreto, la oficina o la familia. Elige el tuyo y cómpralo en línea o por WhatsApp. Aceptamos Yappy y ACH.</p>
+              </div>
+              <div className="t-regalos-grid">
+                {regalos.map((g) => (
+                  <article key={g.id} id={g.id} className="t-regalo">
+                    <div className="t-marco">
+                      {g.foto ? (
+                        <img className="t-foto" src={g.foto} alt={`${g.nombre}, planta para regalar de Home & Garden`} loading="lazy" />
+                      ) : (
+                        <div className="t-ph">
+                          <img src="/brand/HG-icono-color.svg" alt="" />
+                          <span>Foto pronto</span>
+                        </div>
+                      )}
+                      <span className="t-regalo-precio">{formatoBalboas(g.precio)}</span>
+                      {g.agotado && <span className="t-sello">Agotado</span>}
+                    </div>
+                    <div className="t-regalo-info">
+                      <h3>{g.nombre}</h3>
+                      <p>{g.descripcion}</p>
+                      {!g.agotado &&
+                        (g.cuanto ? (
+                          <a className="t-btn t-btn-verde t-regalo-btn" href={g.cuanto} target="_blank" rel="noopener noreferrer">
+                            Comprar <ArrowRight size={17} strokeWidth={2.5} aria-hidden="true" />
+                          </a>
+                        ) : (
+                          <a
+                            className="t-btn t-btn-verde t-regalo-btn"
+                            href={wa(`Hola Home & Garden, quiero regalar la ${g.nombre} (${formatoBalboas(g.precio)}) que vi en la página web.`)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <MessageCircle size={18} strokeWidth={2.5} aria-hidden="true" /> Pedir
+                          </a>
+                        ))}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
         <section className="t-pasos" id="como-comprar">
           <div className="t-wrap">
             <div className="t-seccion-head t-centro">
@@ -261,7 +321,7 @@ export default function Tienda() {
           <div className="t-wrap">
             <div className="t-seccion-head">
               <span className="t-chip">Disponibles hoy en el vivero</span>
-              <h2>Elige tu árbol</h2>
+              <h2>Árboles de interior</h2>
               <p>Cada árbol es único: cuando se vende, sale de la tienda. Todos necesitan un espacio con buena luz natural.</p>
             </div>
 

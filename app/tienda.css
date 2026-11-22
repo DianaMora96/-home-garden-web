@@ -308,3 +308,30 @@
 @media (prefers-reduced-motion: reduce) {
   .t-wa-flotante { transition: none; }
 }
+
+/* Regalos de Navidad */
+.t-barra-nav .t-barra-regalos { display: inline-flex; align-items: center; gap: 0.35em; background: #ffe0d2; }
+.t-barra-nav .t-barra-regalos:hover { background: var(--coral); }
+.t-hero-datos .t-dato-nuevo { display: inline-flex; align-items: center; gap: 0.4em; background: var(--sol); color: var(--forest); }
+.t-regalos { padding-top: 80px; }
+.t-regalos-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; margin-top: 40px; }
+.t-regalo { display: flex; flex-direction: column; min-width: 0; scroll-margin-top: 90px; background: #fff; border: var(--borde); border-radius: var(--r); box-shadow: 4px 4px 0 var(--coral), 4px 4px 0 2px var(--forest); overflow: hidden; transition: transform 0.2s; }
+.t-regalo:hover { transform: translateY(-4px); }
+.t-regalo .t-marco { aspect-ratio: 1 / 1; border-bottom: var(--borde); background: linear-gradient(180deg, #ffe0d2 0%, #ffc9b2 100%); }
+.t-regalo-precio { position: absolute; left: 12px; bottom: 12px; padding: 0.25em 0.8em; border: var(--borde); border-radius: 999px; background: var(--sol); color: var(--forest); font-family: var(--t-display), sans-serif; font-weight: 800; font-size: 1.2rem; box-shadow: 2px 2px 0 var(--forest); }
+.t-regalo-info { display: flex; flex-direction: column; gap: 8px; flex: 1; padding: 16px 16px 18px; }
+.t-regalo h3 { font-size: 1.3rem; color: var(--forest); }
+.t-regalo p { font-size: 0.92rem; color: var(--ink-soft); }
+.t-regalo-btn { margin-top: auto; padding: 0.7em 1em; font-size: 0.95rem; box-shadow: 3px 3px 0 var(--forest); }
+@media (max-width: 1000px) {
+  .t-regalos-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .t-regalos { padding-top: 64px; }
+  .t-regalos-grid { gap: 14px; }
+  .t-regalo h3 { font-size: 1.1rem; }
+  .t-regalo-info { padding: 12px 12px 14px; }
+  .t-regalo p { font-size: 0.85rem; }
+  .t-regalo-precio { font-size: 1rem; left: 8px; bottom: 8px; }
+  .t-regalo .t-ph { padding-bottom: 36px; }
+}
