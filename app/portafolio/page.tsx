@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
+import type { CSSProperties } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Bricolage_Grotesque, Nunito } from 'next/font/google';
 import { ArrowRight, ArrowUpRight, MessageCircle } from 'lucide-react';
 import { WHATSAPP } from '@/lib/catalogo';
-import { fotosVivero, proximamente, proyectos } from '@/lib/portafolio';
+import { fotosVivero, proximamente, proyectos, type Foto } from '@/lib/portafolio';
 import '../tienda.css';
 import './portafolio.css';
 
@@ -31,6 +32,26 @@ export const metadata: Metadata = {
 
 const wa = (texto: string) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(texto)}`;
 const textoProyecto = 'Hola Home & Garden, vi su portafolio y quiero conversar sobre un proyecto.';
+
+// Fotos completas (sin recortar) que pasan solas de derecha a izquierda,
+// igual que "Proyectos" en la tienda. Se pausa al pasar el mouse o tocarla.
+function Desfile({ fotos, nombre, oscuro }: { fotos: Foto[]; nombre: string; oscuro?: boolean }) {
+  // Repetimos las fotos hasta tener al menos 8, para que la fila nunca quede corta en pantallas anchas.
+  let base = fotos;
+  while (base.length < 8) base = [...base, ...fotos];
+  return (
+    <div className={`port-fotos${oscuro ? ' port-fotos-oscuro' : ''}`} aria-label={`Fotos de ${nombre}`}>
+      <div className="port-pista" style={{ '--seg': `${base.length * 6}s` } as CSSProperties}>
+        {[...base, ...base].map((foto, i) => (
+          <figure key={i} aria-hidden={i >= fotos.length || undefined}>
+            <Image src={foto.src} alt={i < fotos.length ? foto.alt : ''} width={foto.w} height={foto.h} sizes="(max-width: 860px) 240px, 320px" />
+            {foto.pie && <figcaption>{foto.pie}</figcaption>}
+          </figure>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function Portafolio() {
   return (
@@ -147,14 +168,7 @@ export default function Portafolio() {
                   </dl>
                 )}
               </div>
-              <div className="port-fotos" tabIndex={0} aria-label={`Fotos de ${p.nombre}. Desliza para ver más.`}>
-                {p.fotos.map((foto) => (
-                  <figure key={foto.src}>
-                    <Image src={foto.src} alt={foto.alt} width={foto.w} height={foto.h} sizes="(max-width: 560px) 70vw, 340px" />
-                    {foto.pie && <figcaption>{foto.pie}</figcaption>}
-                  </figure>
-                ))}
-              </div>
+              <Desfile fotos={p.fotos} nombre={p.nombre} />
             </section>
           ))}
         </div>
@@ -196,13 +210,7 @@ export default function Portafolio() {
               </div>
             </dl>
           </div>
-          <div className="port-fotos port-fotos-oscuro" tabIndex={0} aria-label="Fotos del vivero. Desliza para ver más.">
-            {fotosVivero.map((foto) => (
-              <figure key={foto.src}>
-                <Image src={foto.src} alt={foto.alt} width={foto.w} height={foto.h} sizes="(max-width: 560px) 70vw, 340px" />
-              </figure>
-            ))}
-          </div>
+          <Desfile fotos={fotosVivero} nombre="el vivero" oscuro />
         </section>
 
         <section className="port-cierre">
