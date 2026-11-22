@@ -346,3 +346,6 @@
 .t-pagos-nota { display: flex; align-items: flex-start; gap: 6px; font-size: 0.82rem; color: var(--ink-soft); }
 .t-pagos-nota svg { flex: none; margin-top: 2px; color: #25d366; }
 @media (prefers-reduced-motion: reduce) { .t-pago { transition: none; } }
+.t-pagos-fila { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.t-pagos-fila .t-pago { grid-template-columns: 1fr; justify-items: center; gap: 4px; padding: 0.75em 0.4em; text-align: center; font-size: 0.95rem; }
+.t-pagos-fila .t-campo, .t-pagos-fila btn-yappy { grid-column: 1 / -1; }

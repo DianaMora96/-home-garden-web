@@ -139,48 +139,50 @@ export default function CompraYappy({ arbol, cdn, activo }: { arbol: Arbol; cdn:
       ) : (
         <div className="t-pagos">
           <span className="t-pagos-titulo">Elige cómo pagar</span>
-          {puedePagar ? (
-            <>
-              <label className="t-campo" htmlFor={`tel-${arbol.id}`}>
-                <span>Tu celular con Yappy</span>
-                <input
-                  id={`tel-${arbol.id}`}
-                  inputMode="numeric"
-                  autoComplete="tel-national"
-                  placeholder="6000-0000"
-                  value={telefono}
-                  onChange={(e) => {
-                    telRef.current = e.target.value;
-                    setTelefono(e.target.value);
-                  }}
-                />
-              </label>
-              <btn-yappy ref={btnRef} theme="darkBlue" rounded="true" />
-            </>
-          ) : (
-            <a className="t-pago" href={wa(`Hola Home & Garden, quiero pagar con Yappy la pieza ${arbol.nombre} (${arbol.altura} m).`)} target="_blank" rel="noopener noreferrer">
-              <Smartphone size={20} strokeWidth={2.4} aria-hidden="true" />
-              <span>Pagar con Yappy</span>
+          <div className="t-pagos-fila">
+            {puedePagar ? (
+              <>
+                <label className="t-campo" htmlFor={`tel-${arbol.id}`}>
+                  <span>Tu celular con Yappy</span>
+                  <input
+                    id={`tel-${arbol.id}`}
+                    inputMode="numeric"
+                    autoComplete="tel-national"
+                    placeholder="6000-0000"
+                    value={telefono}
+                    onChange={(e) => {
+                      telRef.current = e.target.value;
+                      setTelefono(e.target.value);
+                    }}
+                  />
+                </label>
+                <btn-yappy ref={btnRef} theme="darkBlue" rounded="true" />
+              </>
+            ) : (
+              <a className="t-pago" href={wa(`Hola Home & Garden, quiero pagar con Yappy la pieza ${arbol.nombre} (${arbol.altura} m).`)} target="_blank" rel="noopener noreferrer">
+                <Smartphone size={24} strokeWidth={2.3} aria-hidden="true" />
+                <span>Yappy</span>
+              </a>
+            )}
+            <a
+              className="t-pago"
+              href={wa(`Hola Home & Garden, quiero pagar con tarjeta la pieza ${arbol.nombre} (${arbol.altura} m). ¿Me envían el enlace de pago?`)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <CreditCard size={24} strokeWidth={2.3} aria-hidden="true" />
+              <span>Tarjeta</span>
             </a>
-          )}
-          <a
-            className="t-pago"
-            href={wa(`Hola Home & Garden, quiero pagar con tarjeta la pieza ${arbol.nombre} (${arbol.altura} m). ¿Me envían el enlace de pago?`)}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <CreditCard size={20} strokeWidth={2.4} aria-hidden="true" />
-            <span>Pagar con tarjeta</span>
-          </a>
-          <a
-            className="t-pago"
-            href={wa(`Hola Home & Garden, quiero pagar por ACH la pieza ${arbol.nombre} (${arbol.altura} m). ¿Me envían los datos de la cuenta?`)}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Landmark size={20} strokeWidth={2.4} aria-hidden="true" />
-            <span>Pagar por ACH</span>
-          </a>
+            <a
+              className="t-pago"
+              href={wa(`Hola Home & Garden, quiero pagar por ACH la pieza ${arbol.nombre} (${arbol.altura} m). ¿Me envían los datos de la cuenta?`)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Landmark size={24} strokeWidth={2.3} aria-hidden="true" />
+              <span>ACH</span>
+            </a>
+          </div>
           <p className="t-pagos-nota">
             <MessageCircle size={15} strokeWidth={2.5} aria-hidden="true" />
             Al elegir una opción te llevamos a WhatsApp para enviarte los datos de pago.
