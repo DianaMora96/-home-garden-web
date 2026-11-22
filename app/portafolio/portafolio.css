@@ -1,0 +1,125 @@
+/* Portafolio: mismos colores y letras de la tienda, en versión más sobria.
+   Menos stickers y giros, más aire y fotos grandes. */
+.port { --linea: 1px solid rgba(18, 63, 36, 0.18); }
+.port h2 { font-size: clamp(2rem, 4.2vw, 3.2rem); color: var(--forest); }
+
+.port-kicker { display: inline-block; font-weight: 800; font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--leaf); }
+.port-sol { position: relative; display: inline-block; color: var(--sol); }
+.port-num { font-family: var(--t-display), sans-serif; font-weight: 700; color: var(--coral); font-variant-numeric: tabular-nums; }
+.port-link { display: inline-flex; align-items: center; gap: 0.35em; font-weight: 800; color: inherit; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.port-link:hover { color: var(--sol); }
+
+/* Portada */
+.port-hero { background: var(--forest); color: #fff; border-bottom: var(--borde); overflow: hidden; }
+.port-hero-in { display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; align-items: center; padding-top: 72px; padding-bottom: 80px; }
+.port-hero-texto { display: flex; flex-direction: column; gap: 22px; }
+.port-hero .port-kicker { color: var(--lime); }
+.port-hero h1 { font-size: clamp(3rem, 7vw, 5.6rem); color: #fff; }
+.port-hero p { max-width: 46ch; font-size: 1.15rem; color: var(--mint); }
+.port-hero-ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 26px; margin-top: 6px; }
+.port-hero .t-btn, .port-cierre .t-btn { border-color: var(--forest); box-shadow: 4px 4px 0 var(--lime); }
+.port-hero .t-btn:hover, .port-cierre .t-btn:hover { box-shadow: 6px 6px 0 var(--lime); }
+.port-hero-fotos { position: relative; height: 470px; }
+.port-hero-fotos img { position: absolute; height: auto; object-fit: cover; border-radius: 22px; border: 2px solid rgba(255, 255, 255, 0.85); }
+.port-hero-f1 { width: 62%; aspect-ratio: 3 / 4.4; right: 0; top: 0; }
+.port-hero-f2 { width: 48%; aspect-ratio: 3 / 4; left: 0; bottom: 0; box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35); }
+
+/* Introducción + índice */
+.port-intro { padding: 88px 0 72px; background: var(--paper); }
+.port-intro-in { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 64px; align-items: end; }
+.port-intro p { font-size: 1.12rem; color: var(--ink-soft); max-width: 52ch; }
+.port-indice { list-style: none; margin: 48px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: var(--linea); }
+.port-indice li { border-bottom: var(--linea); }
+.port-indice a { display: flex; gap: 16px; padding: 20px 12px 20px 0; color: var(--forest); text-decoration: none; transition: background 0.15s; border-radius: 12px; }
+.port-indice a:hover { background: var(--mint); }
+.port-indice .port-num { font-size: 1.1rem; padding-left: 12px; }
+.port-indice b { display: block; font-family: var(--t-display), sans-serif; font-weight: 700; font-size: 1.12rem; line-height: 1.2; }
+.port-indice small { display: block; font-size: 0.88rem; color: var(--ink-soft); margin-top: 2px; }
+
+/* Cada proyecto */
+.port-proyecto { padding: 80px 0 88px; border-top: var(--linea); background: var(--paper); }
+.port-proyecto:nth-child(even) { background: #fff; }
+.port-proyecto-cab { display: grid; grid-template-columns: auto 1.1fr 1fr; gap: 20px 40px; align-items: start; }
+.port-num-grande { font-size: clamp(2.6rem, 5vw, 4rem); line-height: 0.9; }
+.port-proyecto-titulo { display: flex; flex-direction: column; gap: 10px; }
+.port-detalle { font-size: 0.95rem; font-weight: 700; color: var(--ink-soft); }
+.port-proyecto-texto { font-size: 1.08rem; color: var(--ink-soft); padding-top: 28px; max-width: 48ch; }
+
+.port-datos { display: flex; flex-wrap: wrap; gap: 14px; margin: 36px 0 0; }
+.port-datos div { flex: 1 1 160px; display: flex; flex-direction: column-reverse; gap: 2px; padding: 18px 22px; border: var(--borde); border-radius: 18px; background: #fff; }
+.port-datos div:first-child { background: var(--sol); }
+.port-datos dd { margin: 0; font-family: var(--t-display), sans-serif; font-weight: 800; font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1; color: var(--forest); }
+.port-datos dt { font-weight: 700; font-size: 0.92rem; color: var(--ink-soft); }
+
+/* Fotos que pasan solas de derecha a izquierda, completas (sin recorte). */
+.port-fotos { margin-top: 44px; overflow: hidden; padding: 4px 0 8px; }
+.port-pista { display: flex; width: max-content; animation: port-desfile var(--seg, 45s) linear infinite; }
+.port-fotos:hover .port-pista, .port-fotos:active .port-pista { animation-play-state: paused; }
+@keyframes port-desfile { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.port-fotos figure { flex: none; margin: 0 16px 0 0; display: flex; flex-direction: column; gap: 10px; }
+.port-fotos img { display: block; height: 420px; width: auto; border-radius: 18px; border: var(--borde); background: var(--mint); }
+.port-fotos figcaption { font-weight: 800; font-size: 0.95rem; color: var(--forest); }
+
+/* Próximamente */
+.port-pronto { background: var(--sol); border-top: var(--borde); border-bottom: var(--borde); }
+.port-pronto-in { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 28px; padding-top: 26px; padding-bottom: 26px; }
+.port-pronto .port-kicker { color: var(--forest); }
+.port-pronto ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.port-pronto li { padding: 0.4em 0.95em; border: var(--borde); border-radius: 999px; background: #fff; font-weight: 700; font-size: 0.92rem; color: var(--forest); }
+
+/* Vivero */
+.port-vivero { background: var(--forest); color: #fff; padding: 88px 0 80px; }
+.port-vivero-in { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px 64px; align-items: end; }
+.port-vivero h2 { color: #fff; margin: 10px 0 18px; }
+.port-vivero .port-kicker { color: var(--lime); }
+.port-vivero p { color: var(--mint); font-size: 1.08rem; max-width: 56ch; }
+.port-datos-vivero { margin: 0; }
+.port-datos-vivero div { border-color: var(--lime); background: transparent; }
+.port-datos-vivero div:first-child { background: var(--sol); border-color: var(--forest); }
+.port-datos-vivero dd { color: #fff; }
+.port-datos-vivero dt { color: var(--mint); }
+.port-datos-vivero div:first-child dd { color: var(--forest); }
+.port-datos-vivero div:first-child dt { color: var(--ink-soft); }
+.port-fotos-oscuro img { border-color: rgba(255, 255, 255, 0.85); }
+
+/* Cierre */
+.port-cierre { background: var(--paper); padding: 96px 0; border-top: var(--borde); }
+.port-cierre-in { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+.port-cierre h2 { font-size: clamp(2.6rem, 6vw, 4.4rem); }
+.port-cierre p { font-size: 1.15rem; color: var(--ink-soft); }
+.port-cierre .port-link { color: var(--forest); }
+.port-cierre .port-link:hover { color: var(--leaf); }
+.port-pie { padding-bottom: 0; }
+
+@media (max-width: 1000px) {
+  .port-indice { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .port-proyecto-cab { grid-template-columns: auto 1fr; }
+  .port-proyecto-texto { grid-column: 2; padding-top: 0; }
+}
+@media (max-width: 860px) {
+  .port .t-barra-nav a[href^="#"] { display: none; }
+  .port-hero-in { grid-template-columns: 1fr; padding-top: 40px; padding-bottom: 56px; }
+  .port-hero-fotos { height: 360px; max-width: 460px; width: 100%; }
+  .port-intro-in, .port-vivero-in { grid-template-columns: 1fr; }
+  .port-fotos img { height: 340px; }
+}
+@media (max-width: 560px) {
+  .port-intro { padding: 64px 0 48px; }
+  .port-indice { grid-template-columns: 1fr; }
+  .port-proyecto { padding: 56px 0 60px; }
+  .port-proyecto-cab { grid-template-columns: 1fr; gap: 12px; }
+  .port-proyecto-texto { grid-column: auto; }
+  .port-datos div { flex-basis: 100px; padding: 14px 16px; }
+  .port-fotos { margin-top: 32px; }
+  .port-fotos figure { margin-right: 12px; }
+  .port-fotos img { height: 300px; }
+  .port-hero-fotos { height: 320px; }
+  .port-vivero { padding: 64px 0 56px; }
+  .port-cierre { padding: 72px 0; }
+  .port-cierre .t-btn { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .port-indice a { transition: none; }
+  .port-fotos { overflow-x: auto; }
+  .port-pista { animation: none; }
+}

@@ -137,7 +137,7 @@ export default function Tienda() {
     paymentAccepted: 'Yappy, ACH, Visa, Mastercard',
     address: { '@type': 'PostalAddress', addressCountry: 'PA' },
     areaServed: { '@type': 'Country', name: 'Panamá' },
-    sameAs: ['https://homeandgardenportafolio.netlify.app/', 'https://cuanto.app/homeandgarden'],
+    sameAs: ['https://cuanto.app/homeandgarden'],
     makesOffer: disponibles
       .filter((a) => a.precio != null)
       .map((a) => ({
@@ -167,7 +167,7 @@ export default function Tienda() {
             <a href="#potes">Potes</a>
             <a href="#proyectos">Proyectos</a>
             <a href="#cuidados">Cuidados</a>
-            <a className="t-barra-port" href="https://homeandgardenportafolio.netlify.app/" target="_blank" rel="noopener noreferrer">
+            <a className="t-barra-port" href="/portafolio">
               Portafolio
             </a>
             <a className="t-barra-cat" href="https://cuanto.app/homeandgarden" target="_blank" rel="noopener noreferrer">
