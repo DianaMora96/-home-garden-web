@@ -255,7 +255,7 @@ export default function Tienda() {
                   <Gift size={14} strokeWidth={2.5} aria-hidden="true" /> Navidad · Secret Santa
                 </span>
                 <h2>Regala una planta, desde {formatoBalboas(Math.min(...regalos.map((g) => g.precio)))}</h2>
-                <p>Regalitos verdes para el amigo secreto, la oficina o la familia. Elige el tuyo y cómpralo en línea o por WhatsApp. Aceptamos Yappy y ACH.</p>
+                <p>Regalitos verdes para el amigo secreto, la oficina o la familia. Elige el tuyo y cómpralo en línea en nuestra tienda. Aceptamos Yappy y ACH.</p>
               </div>
               <div className="t-regalos-grid">
                 {regalos.map((g) => (

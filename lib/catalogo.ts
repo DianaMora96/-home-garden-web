@@ -239,7 +239,7 @@ export function formatoBalboas(monto: number): string {
 // Regalos de Navidad / Secret Santa: plantas pequeñas para regalar.
 // Para agregar una, copia un bloque y cambia los datos. Para la foto, sube
 // la imagen a `public/tienda/regalos/` y pon su ruta en `foto`
-// (ej. '/tienda/regalos/poto.jpg'). Sin foto se muestra "Foto pronto".
+// (ej. '/tienda/regalos/poto.jpg'), o usa la dirección de la foto en Cuanto. Sin foto se muestra "Foto pronto".
 // Si la planta está en Cuanto, pon el enlace del producto en `cuanto`: el
 // botón "Comprar" lleva ahí. Sin enlace, el botón abre WhatsApp.
 // Con `agotado: true` la planta se muestra como agotada, sin botón de compra.
@@ -255,29 +255,35 @@ export type Regalo = {
 
 export const regalos: Regalo[] = [
   {
-    id: 'poto-escritorio',
-    nombre: 'Poto para escritorio',
-    descripcion: 'Pequeño, fácil y aguanta poca luz. El regalo perfecto para la oficina.',
+    id: 'potho-variegado',
+    nombre: 'Potho variegado',
+    descripcion: 'Pequeño y fácil: aguanta luz baja o alta. El regalo perfecto para el escritorio.',
     precio: 5.95,
+    foto: 'https://images.cuanto.app/?url=https://cuanto-products.nyc3.digitaloceanspaces.com/208040c6-a072-4b3e-8515-b0f4475404aa&w=800&h=800&output=jpg',
     cuanto: 'https://cuanto.app/homeandgarden/p/80eb11',
   },
   {
-    id: 'peperomia',
-    nombre: 'Peperomia',
-    descripcion: 'Hojitas gruesas y brillantes. Casi no pide agua, ideal para principiantes.',
-    precio: 10.95,
+    id: 'sigonio-rosado',
+    nombre: 'Sigonio rosado',
+    descripcion: 'Hojas en tonos rosados. Va bien con poca o mucha luz, dentro o fuera de casa.',
+    precio: 10,
+    foto: 'https://images.cuanto.app/?url=https://cuanto-products.nyc3.digitaloceanspaces.com/19f1e788-081d-4a2c-b147-03f2c6d8f41f&w=800&h=800&output=jpg',
+    cuanto: 'https://cuanto.app/homeandgarden/p/ea2c01',
   },
   {
     id: 'aglaonema-silver-bay',
     nombre: 'Aglaonema Silver Bay',
-    descripcion: 'Hojas verdes con plateado. Elegante y muy resistente en interior.',
+    descripcion: 'Hojas verdes con plateado. Elegante y muy resistente en interior, con luz baja a media.',
     precio: 25,
+    foto: 'https://images.cuanto.app/?url=https://cuanto-products.nyc3.digitaloceanspaces.com/1add0a54-4509-4781-8cb9-e6afed6b52f7&w=800&h=800&output=jpg',
     cuanto: 'https://cuanto.app/homeandgarden/p/35aa01',
   },
   {
-    id: 'aglaonema-roja',
-    nombre: 'Aglaonema roja',
-    descripcion: 'Hojas rojas y verdes: el color perfecto para Navidad.',
+    id: 'philodendron-congo-rojo',
+    nombre: 'Philodendron Congo Rojo',
+    descripcion: 'Hojas grandes con tonos rojizos: el color perfecto para Navidad.',
     precio: 25,
+    foto: 'https://images.cuanto.app/?url=https://cuanto-products.nyc3.digitaloceanspaces.com/2926d66c-9045-4702-82b2-0208072ad1d0&w=800&h=800&output=jpg',
+    cuanto: 'https://cuanto.app/homeandgarden/p/8761fe',
   },
 ];
