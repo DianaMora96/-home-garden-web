@@ -1,7 +1,8 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import type { Arbol } from '@/lib/catalogo';
-import { ACH, ENTREGA, formatoBalboas, WHATSAPP } from '@/lib/catalogo';
+import { CreditCard, Landmark, MessageCircle, Smartphone } from 'lucide-react';
+import { ENTREGA, formatoBalboas, WHATSAPP } from '@/lib/catalogo';
 
 type BtnYappy = HTMLElement & {
   isButtonLoading?: boolean;
@@ -46,8 +47,7 @@ export default function CompraYappy({ arbol, cdn, activo }: { arbol: Arbol; cdn:
   const [online, setOnline] = useState(true);
 
   const precio = arbol.precio;
-  const total = precio ?? 0;
-  const textoWa = encodeURIComponent(`Hola Home & Garden, me interesa la pieza ${arbol.nombre} (${arbol.altura} m) de la tienda en línea.`);
+  const wa = (texto: string) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(texto)}`;
 
   useEffect(() => {
     if (!activo || precio == null) return;
@@ -134,95 +134,60 @@ export default function CompraYappy({ arbol, cdn, activo }: { arbol: Arbol; cdn:
         </div>
       )}
 
-      {puedePagar ? (
-        <>
-          <label className="t-campo" htmlFor={`tel-${arbol.id}`}>
-            <span>Tu celular con Yappy</span>
-            <input
-              id={`tel-${arbol.id}`}
-              inputMode="numeric"
-              autoComplete="tel-national"
-              placeholder="6000-0000"
-              value={telefono}
-              onChange={(e) => {
-                telRef.current = e.target.value;
-                setTelefono(e.target.value);
-              }}
-            />
-          </label>
-          <btn-yappy ref={btnRef} theme="darkBlue" rounded="true" />
-        </>
-      ) : precio != null ? (
-        <a
-          className="t-btn-tarjeta"
-          href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
-            `Hola Home & Garden, quiero pagar con Yappy la pieza ${arbol.nombre} (${arbol.altura} m).`,
-          )}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Pagar con Yappy <small>por WhatsApp</small>
-        </a>
-      ) : (
+      {precio == null ? (
         <p className="t-nota">Precio a consultar. Escríbenos y te enviamos fotos y disponibilidad.</p>
-      )}
-
-      {precio != null && (
-        <>
-          <a
-            className="t-btn-tarjeta t-btn-sec"
-            href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
-              `Hola Home & Garden, quiero pagar con tarjeta la pieza ${arbol.nombre} (${arbol.altura} m). ¿Me envían el enlace de pago?`,
-            )}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Pagar con tarjeta <small>Visa · Mastercard</small>
-          </a>
-          <p className="t-nota">Con tarjeta, pídenos el enlace de pago por WhatsApp y te lo enviamos.</p>
-        </>
-      )}
-
-      {precio != null && (
-        <details className="t-ach">
-          <summary>Pagar por transferencia ACH</summary>
-          {ACH.cuenta ? (
-            <dl>
-              <div>
-                <dt>Banco</dt>
-                <dd>{ACH.banco}</dd>
-              </div>
-              <div>
-                <dt>{ACH.tipo}</dt>
-                <dd>{ACH.cuenta}</dd>
-              </div>
-              <div>
-                <dt>A nombre de</dt>
-                <dd>{ACH.titular}</dd>
-              </div>
-              <div>
-                <dt>Monto</dt>
-                <dd>{formatoBalboas(total)}</dd>
-              </div>
-              <div>
-                <dt>Descripción</dt>
-                <dd>{arbol.nombre}</dd>
-              </div>
-            </dl>
-          ) : (
-            <p className="t-nota">Escríbenos por WhatsApp y te enviamos los datos de la cuenta para transferir {formatoBalboas(total)}.</p>
-          )}
-          <a
-            className="t-btn-linea"
-            href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
-              `Hola Home & Garden, quiero pagar por ACH la pieza ${arbol.nombre} (${arbol.altura} m).${ACH.cuenta ? ' Adjunto el comprobante.' : ' ¿Me envían los datos de la cuenta?'}`,
-            )}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {ACH.cuenta ? 'Enviar comprobante por WhatsApp' : 'Pedir datos por WhatsApp'}
-          </a>
-        </details>
+      ) : (
+        <div className="t-pagos">
+          <span className="t-pagos-titulo">Elige cómo pagar</span>
+          <div className="t-pagos-fila">
+            {puedePagar ? (
+              <>
+                <label className="t-campo" htmlFor={`tel-${arbol.id}`}>
+                  <span>Tu celular con Yappy</span>
+                  <input
+                    id={`tel-${arbol.id}`}
+                    inputMode="numeric"
+                    autoComplete="tel-national"
+                    placeholder="6000-0000"
+                    value={telefono}
+                    onChange={(e) => {
+                      telRef.current = e.target.value;
+                      setTelefono(e.target.value);
+                    }}
+                  />
+                </label>
+                <btn-yappy ref={btnRef} theme="darkBlue" rounded="true" />
+              </>
+            ) : (
+              <a className="t-pago" href={wa(`Hola Home & Garden, quiero pagar con Yappy la pieza ${arbol.nombre} (${arbol.altura} m).`)} target="_blank" rel="noopener noreferrer">
+                <Smartphone size={24} strokeWidth={2.3} aria-hidden="true" />
+                <span>Yappy</span>
+              </a>
+            )}
+            <a
+              className="t-pago"
+              href={wa(`Hola Home & Garden, quiero pagar con tarjeta la pieza ${arbol.nombre} (${arbol.altura} m). ¿Me envían el enlace de pago?`)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <CreditCard size={24} strokeWidth={2.3} aria-hidden="true" />
+              <span>Tarjeta</span>
+            </a>
+            <a
+              className="t-pago"
+              href={wa(`Hola Home & Garden, quiero pagar por ACH la pieza ${arbol.nombre} (${arbol.altura} m). ¿Me envían los datos de la cuenta?`)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Landmark size={24} strokeWidth={2.3} aria-hidden="true" />
+              <span>ACH</span>
+            </a>
+          </div>
+          <p className="t-pagos-nota">
+            <MessageCircle size={15} strokeWidth={2.5} aria-hidden="true" />
+            Al elegir una opción te llevamos a WhatsApp para enviarte los datos de pago.
+          </p>
+        </div>
       )}
 
       {mensaje && (
@@ -231,14 +196,11 @@ export default function CompraYappy({ arbol, cdn, activo }: { arbol: Arbol; cdn:
         </p>
       )}
 
-      <a
-        className={precio == null ? 't-btn-tarjeta' : 't-link-wa'}
-        href={`https://wa.me/${WHATSAPP}?text=${textoWa}`}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {precio == null ? 'Consultar por WhatsApp' : '¿Dudas? Pregúntanos por WhatsApp'}
-      </a>
+      {precio == null && (
+        <a className="t-btn-tarjeta" href={wa(`Hola Home & Garden, me interesa la pieza ${arbol.nombre} (${arbol.altura} m) de la tienda en línea.`)} target="_blank" rel="noopener noreferrer">
+          Consultar por WhatsApp
+        </a>
+      )}
     </div>
   );
 }

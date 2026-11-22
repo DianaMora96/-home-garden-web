@@ -335,3 +335,17 @@
   .t-regalo-precio { font-size: 1rem; left: 8px; bottom: 8px; }
   .t-regalo .t-ph { padding-bottom: 36px; }
 }
+
+/* Formas de pago unificadas */
+.t-pagos { display: flex; flex-direction: column; gap: 10px; }
+.t-pagos-titulo { font-weight: 800; font-size: 0.92rem; color: var(--forest); }
+.t-pago { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 10px; padding: 0.8em 1.1em; border: var(--borde); border-radius: 16px; background: #fff; color: var(--forest); text-decoration: none; font-weight: 800; font-size: 1rem; box-shadow: 3px 3px 0 var(--forest); transition: transform 0.15s, box-shadow 0.15s, background 0.15s; }
+.t-pago svg { color: var(--leaf); }
+.t-pago small { font-size: 0.78rem; font-weight: 600; color: var(--ink-soft); }
+.t-pago:hover, .t-pago:focus-visible { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--forest); background: var(--mint); outline: none; }
+.t-pagos-nota { display: flex; align-items: flex-start; gap: 6px; font-size: 0.82rem; color: var(--ink-soft); }
+.t-pagos-nota svg { flex: none; margin-top: 2px; color: #25d366; }
+@media (prefers-reduced-motion: reduce) { .t-pago { transition: none; } }
+.t-pagos-fila { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.t-pagos-fila .t-pago { grid-template-columns: 1fr; justify-items: center; gap: 4px; padding: 0.75em 0.4em; text-align: center; font-size: 0.95rem; }
+.t-pagos-fila .t-campo, .t-pagos-fila btn-yappy { grid-column: 1 / -1; }
