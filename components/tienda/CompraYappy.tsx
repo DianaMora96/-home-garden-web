@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import type { Arbol } from '@/lib/catalogo';
-import { ACH, DIAS_ENTREGA, ENTREGA, formatoBalboas, WHATSAPP } from '@/lib/catalogo';
+import { ACH, ENTREGA, formatoBalboas, WHATSAPP } from '@/lib/catalogo';
 
 type BtnYappy = HTMLElement & {
   isButtonLoading?: boolean;
@@ -239,10 +239,6 @@ export default function CompraYappy({ arbol, cdn, activo }: { arbol: Arbol; cdn:
       >
         {precio == null ? 'Consultar por WhatsApp' : '¿Dudas? Pregúntanos por WhatsApp'}
       </a>
-
-      {precio != null && (
-        <p className="t-nota t-nota-fina">El pago del 100% confirma tu planta. La entrega se paga aparte al coordinarla. {DIAS_ENTREGA}</p>
-      )}
     </div>
   );
 }
