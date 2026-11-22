@@ -235,3 +235,49 @@ export const arboles: Arbol[] = [
 export function formatoBalboas(monto: number): string {
   return `B/. ${monto.toLocaleString('es-PA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 }
+
+// Regalos de Navidad / Secret Santa: plantas pequeñas para regalar.
+// Para agregar una, copia un bloque y cambia los datos. Para la foto, sube
+// la imagen a `public/tienda/regalos/` y pon su ruta en `foto`
+// (ej. '/tienda/regalos/poto.jpg'). Sin foto se muestra "Foto pronto".
+// Si la planta está en Cuanto, pon el enlace del producto en `cuanto`: el
+// botón "Comprar" lleva ahí. Sin enlace, el botón abre WhatsApp.
+// Con `agotado: true` la planta se muestra como agotada, sin botón de compra.
+export type Regalo = {
+  id: string;
+  nombre: string;
+  descripcion: string;
+  precio: number;
+  foto?: string;
+  cuanto?: string;
+  agotado?: boolean;
+};
+
+export const regalos: Regalo[] = [
+  {
+    id: 'poto-escritorio',
+    nombre: 'Poto para escritorio',
+    descripcion: 'Pequeño, fácil y aguanta poca luz. El regalo perfecto para la oficina.',
+    precio: 5.95,
+    cuanto: 'https://cuanto.app/homeandgarden/p/80eb11',
+  },
+  {
+    id: 'peperomia',
+    nombre: 'Peperomia',
+    descripcion: 'Hojitas gruesas y brillantes. Casi no pide agua, ideal para principiantes.',
+    precio: 10.95,
+  },
+  {
+    id: 'aglaonema-silver-bay',
+    nombre: 'Aglaonema Silver Bay',
+    descripcion: 'Hojas verdes con plateado. Elegante y muy resistente en interior.',
+    precio: 25,
+    cuanto: 'https://cuanto.app/homeandgarden/p/35aa01',
+  },
+  {
+    id: 'aglaonema-roja',
+    nombre: 'Aglaonema roja',
+    descripcion: 'Hojas rojas y verdes: el color perfecto para Navidad.',
+    precio: 25,
+  },
+];

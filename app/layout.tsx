@@ -8,7 +8,7 @@ const geist = Geist({ variable: '--font-geist-sans', subsets: ['latin'] });
 export const metadata: Metadata = {
   metadataBase: new URL(SITIO),
   title: 'Home & Garden Panamá | Vivero de árboles y paisajismo',
-  description: 'Vivero de árboles en Panamá. Transformamos espacios con árboles, plantas y palmas de la más alta calidad: vivero, instalación y mantenimiento de jardines.',
+  description: 'Vivero de árboles, palmas y plantas de interior en Panamá. Transformamos espacios con árboles, plantas y palmas de la más alta calidad: vivero, instalación y mantenimiento de jardines.',
   keywords: 'vivero de árboles, vivero de árboles panamá, vivero panama, plantas panama, paisajismo panama, jardines panama, arboles panama, palmas panama',
   openGraph: {
     title: 'Home & Garden Panamá | Vivero de árboles y paisajismo',
